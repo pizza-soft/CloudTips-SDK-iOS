@@ -12,6 +12,8 @@
 		8309852F252364A2009A3C32 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8309852D252364A2009A3C32 /* Main.storyboard */; };
 		83098531252364A3009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 83098530252364A3009A3C32 /* Assets.xcassets */; };
 		83098534252364A3009A3C32 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 83098532252364A3009A3C32 /* LaunchScreen.storyboard */; };
+		B139C42F27310FEA00326D85 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139C42E27310FEA00326D85 /* Button.swift */; };
+		B139C4312731101C00326D85 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = B139C4302731101C00326D85 /* TextField.swift */; };
 		C7E779320278ADA911ADDAC3 /* Pods_Cloudtips_SDK_iOS_Demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 16B568388A021B08CB0E6827 /* Pods_Cloudtips_SDK_iOS_Demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +27,8 @@
 		83098533252364A3009A3C32 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		83098535252364A3009A3C32 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		835BBAB52525CA7400036021 /* Cloudtips-SDK-iOS-Demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Cloudtips-SDK-iOS-Demo.entitlements"; sourceTree = "<group>"; };
+		B139C42E27310FEA00326D85 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		B139C4302731101C00326D85 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		B83D74A9AB12C0AF4E4C0865 /* Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.release.xcconfig"; sourceTree = "<group>"; };
 		C53C32A9AAD03CCB456D8FF7 /* Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK-iOS-Demo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +85,7 @@
 		83098526252364A2009A3C32 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				B139C42D27310FBA00326D85 /* UIKit */,
 				83098527252364A2009A3C32 /* AppDelegate.swift */,
 				8309852B252364A2009A3C32 /* ViewController.swift */,
 			);
@@ -96,6 +101,15 @@
 				83098532252364A3009A3C32 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		B139C42D27310FBA00326D85 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B139C42E27310FEA00326D85 /* Button.swift */,
+				B139C4302731101C00326D85 /* TextField.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -127,7 +141,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1200;
-				LastUpgradeCheck = 1200;
+				LastUpgradeCheck = 1310;
 				TargetAttributes = {
 					83098523252364A2009A3C32 = {
 						CreatedOnToolsVersion = 12.0;
@@ -213,7 +227,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				8309852C252364A2009A3C32 /* ViewController.swift in Sources */,
+				B139C42F27310FEA00326D85 /* Button.swift in Sources */,
 				83098528252364A2009A3C32 /* AppDelegate.swift in Sources */,
+				B139C4312731101C00326D85 /* TextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,7 +306,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -345,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -366,7 +382,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = WCLAYYKMWP;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -390,7 +406,7 @@
 				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = WCLAYYKMWP;
 				INFOPLIST_FILE = Resources/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

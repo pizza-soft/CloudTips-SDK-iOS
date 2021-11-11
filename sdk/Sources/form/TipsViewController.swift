@@ -29,6 +29,10 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var googleWebView: WKWebView!
     @IBOutlet private var containerBottomConstraint: NSLayoutConstraint!
     
+    @IBOutlet weak var feeFromPayerView: UIView!
+    @IBOutlet weak var feeFromPayerSwitch: UISwitch!
+    @IBOutlet weak var feeFromPayerLabel: UILabel!
+    
     private var supportedPaymentNetworks: [PKPaymentNetwork] {
         get {
             var arr: [PKPaymentNetwork] = [.visa, .masterCard, .JCB]
@@ -42,6 +46,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private let defaultAmounts = [100, 200, 300, 500, 1000, 2000, 3000, 5000]
     private var amount = NSNumber.init(value: 0)
+    private var amountPayerFee = NSNumber.init(value: 0)
     private var captchaToken: String?
 
     
@@ -62,6 +67,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
     public override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationController?.navigationBar.tintColor = UIColor.init(named: "azure")
         
         HTTPResource.baseApiURLString = configuration.testMode ? HTTPResource.baseApiPreprodURLString : HTTPResource.baseApiProdURLString
         
@@ -193,8 +200,10 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.configuration.profile.photoUrl = response?.avatarUrl
             self.configuration.profile.purposeText = response?.paymentMessage?.ru
             self.configuration.profile.successPageText = response?.successMessage?.ru
+            self.configuration.feeFromPayerEnabled = response?.payerFee?.enabled
+            self.configuration.feeFromPayerState = response?.payerFee?.initialState
             self.amountSettings = response?.amount
-                            
+            
             completion()
         }
     }
@@ -251,6 +260,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
             return should
         }
+        
         self.commentTextField.shouldReturn = {
             self.commentTextField.resignFirstResponder()
             return false
@@ -264,8 +274,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             }
             
             self.amountsCollectionView.reloadData()
+            
+            self.updatePayerFee()
         }
         
+        
+                
         self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         
         let attributes1: [NSAttributedString.Key : Any] =
@@ -289,6 +303,65 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
         self.payButton.onAction = {
             self.onPay()
+        }
+        
+        self.feeFromPayerSwitch.addTarget(self, action: #selector(payerFeeSwitchChanged), for: UIControl.Event.valueChanged)
+    }
+    
+    @objc func payerFeeSwitchChanged() {
+        
+        if (self.feeFromPayerSwitch.isOn) {
+            configuration.feeFromPayerState = "Enabled"
+        } else {
+            configuration.feeFromPayerState = "Disabled"
+        }
+    }
+        
+    @objc func updatePayerFee() {
+        
+        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString) {
+        
+            if let layoutId = self.configuration.layout?.layoutId {
+                DispatchQueue.global().async { [weak self] in
+                    guard let `self` = self else {
+                        return
+                    }
+
+                    let updateGroup = DispatchGroup()
+
+                    updateGroup.enter()
+                    self.getPayerFee(layoutId: layoutId, amount: amountString) {
+                        updateGroup.leave()
+                    }
+
+                    updateGroup.wait()
+
+                    DispatchQueue.main.async {
+                        self.contentScrollView.isHidden = false
+                        self.progressContainerView.isHidden = true
+                        self.progressView.stopAnimation()
+
+                        self.updateUI()
+                    }
+                }
+            }
+        } else {
+            
+            self.amountPayerFee = 0
+            //self.feeFromPayerLabel.text = "Так вы компенсируете комиссию сервиса, а с вашей карты спишется 0 Р"
+        }
+    }
+    
+    private func getPayerFee(layoutId: String, amount: String, completion: @escaping () -> ()) {
+        api.getPayerFee(layoutId: layoutId, amount: amount) { [weak self] (response, error) in
+            guard let `self` = self else {
+                return
+            }
+            
+            self.amountPayerFee = NSNumber.init(value: response?.amountFromPayer ?? 0.00)
+            //self.feeFromPayerLabel.text = "Так вы компенсируете комиссию сервиса, а с вашей карты спишется \(response?.amountFromPayer ?? 0.00) Р"
+            
+            completion()
         }
     }
     
@@ -331,6 +404,23 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
         let minMaxString = "Введите сумму от \(minAmountString) до \(maxAmountString)"
         self.amountHelperLabel.text = minMaxString
+        
+        self.feeFromPayerSwitch.onTintColor = .azure
+        
+        if (configuration.feeFromPayerEnabled ?? false) {
+            self.feeFromPayerView.isHidden = false
+        } else {
+            self.feeFromPayerView.isHidden = true
+        }
+        
+        if (configuration.feeFromPayerState == "Enabled") {
+            self.feeFromPayerSwitch.isOn = true
+        } else {
+            self.feeFromPayerSwitch.isOn = false
+
+        }
+        
+        self.feeFromPayerLabel.text = "Так вы компенсируете комиссию сервиса, а с вашей карты спишется \(self.amountPayerFee) Р"
     }
     
     private func getMinAmount() -> Double {
@@ -360,6 +450,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
             self.amount = amount
             
+            let amountForPay = feeFromPayerSwitch.isOn ? self.amountPayerFee : self.amount
+            
             self.captchaToken = nil
             
                 let request = PKPaymentRequest()
@@ -368,7 +460,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 request.merchantCapabilities = PKMerchantCapability.capability3DS
                 request.countryCode = "RU"
                 request.currencyCode = "RUB"
-                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "CloudTips", amount: NSDecimalNumber.init(value: self.amount.doubleValue))]
+                request.paymentSummaryItems = [PKPaymentSummaryItem(label: "CloudTips", amount: NSDecimalNumber.init(value: amountForPay.doubleValue))]
                 if let applePayController = PKPaymentAuthorizationViewController(paymentRequest:
                         request) {
                     applePayController.delegate = self
@@ -445,6 +537,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.amountTextField.text = String(amount)
             self.setErrorMode(false)
             cell.setSelected(true)
+            self.updatePayerFee()
         }
     }
     
@@ -467,7 +560,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             switch identifier {
             case .tipsToCardSegue:
                 if let controller = segue.destination as? CardViewController, let layoutId = self.configuration.layout?.layoutId {
-                    let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
+                    let paymentData = PaymentData.init(
+                        layoutId: layoutId,
+                        amount: self.amount,
+                        comment: self.commentTextField.text,
+                        amountPayerFee: self.amountPayerFee,
+                        feeFromPayer: self.feeFromPayerSwitch.isOn
+                    )
                     controller.paymentData = paymentData
                     controller.configuration = self.configuration
                     
@@ -532,7 +631,13 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
     
     public func paymentAuthorizationViewController(_ controller: PKPaymentAuthorizationViewController, didAuthorizePayment payment: PKPayment, handler completion: @escaping (PKPaymentAuthorizationResult) -> Void) {
         if let layoutId = self.configuration.layout?.layoutId, let cryptogram = payment.convertToString() {
-            let paymentData = PaymentData.init(layoutId: layoutId, amount: self.amount, comment: self.commentTextField.text)
+            let paymentData = PaymentData.init(
+                layoutId: layoutId,
+                amount: self.amount,
+                comment: self.commentTextField.text,
+                amountPayerFee: self.amountPayerFee,
+                feeFromPayer: self.feeFromPayerSwitch.isOn
+            )
             self.auth(with: paymentData, cryptogram: cryptogram, captchaToken: self.captchaToken ?? "") { (response, error) in
                 if response?.statusCode == .success {
                     self.paymentError = nil

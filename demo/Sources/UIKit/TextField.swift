@@ -1,9 +1,8 @@
 //
-//  UnderlineTextField.swift
-//  sdk
+//  TextField.swift
+//  Cloudtips-SDK-iOS-Demo
 //
-//  Created by Sergey Iskhakov on 18.09.2020.
-//  Copyright © 2020 Cloudpayments. All rights reserved.
+//  Created by a.ignatov on 02.11.2021.
 //
 
 import Foundation
@@ -251,3 +250,4 @@ class TextField: UITextField, UITextFieldDelegate {
         return bounds.insetBy(dx: 16, dy: 0)
     }
 }
+

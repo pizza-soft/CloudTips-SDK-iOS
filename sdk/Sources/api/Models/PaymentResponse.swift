@@ -14,7 +14,7 @@ enum PaymentResponseStatus: String, Codable {
     case need3ds = "Need3ds"
 }
 
-public struct PaymentResponse: Codable {
+struct PaymentResponse: Codable {
     private(set) var transactionId: Int?
     private(set) var md: String?
     private(set) var paReq: String?

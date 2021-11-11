@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PaymentPagesResponse: Codable {
+struct PaymentPagesResponse: Codable {
     private(set) var id: String?
     private(set) var layoutId: String?
     private(set) var url: String?
@@ -21,9 +21,11 @@ public struct PaymentPagesResponse: Codable {
     
     private(set) var paymentMessage: PaymentPageText?
     private(set) var successMessage: PaymentPageText?
+    
+    private(set) var payerFee: PayerFee?
 }
 
-public struct AmountSettings: Codable {
+struct AmountSettings: Codable {
     private(set) var constraints: [AmountConstraint]?
     
     func getMinAmount() -> Double? {
@@ -35,13 +37,18 @@ public struct AmountSettings: Codable {
     }
 }
 
-public struct AmountConstraint: Codable {
+struct AmountConstraint: Codable {
     private(set) var type: String?
     private(set) var currency: String?
     private(set) var value: Double?
 }
 
-public struct PaymentPageText: Codable {
+struct PaymentPageText: Codable {
     private(set) var ru: String?
     private(set) var en: String?
+}
+
+struct PayerFee: Codable {
+    private(set) var enabled: Bool?
+    private(set) var initialState: String?
 }

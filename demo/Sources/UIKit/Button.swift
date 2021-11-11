@@ -1,9 +1,8 @@
 //
 //  Button.swift
-//  sdk
+//  Cloudtips-SDK-iOS-Demo
 //
-//  Created by Sergey Iskhakov on 17.09.2020.
-//  Copyright © 2020 Cloudpayments. All rights reserved.
+//  Created by a.ignatov on 02.11.2021.
 //
 
 import Foundation

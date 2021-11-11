@@ -20,6 +20,7 @@ enum HTTPResource {
     case post3ds
     case captchaVerify
     case getPaymentPages(String)
+    case getPayerFee
     
     func asURL() -> String {
         let baseURL = HTTPResource.baseApiURLString
@@ -39,6 +40,8 @@ enum HTTPResource {
             return baseURL.appending("captcha/verify")
         case .getPaymentPages(let layoutId):
             return baseURL.appending("paymentPages/\(layoutId)")
+        case .getPayerFee:
+            return baseURL.appending("payment/fee")
         }
     }
 }

@@ -1,6 +1,6 @@
 {
   "name": "Cloudtips",
-  "version": "1.1.2",
+  "version": "1.1.6",
   "summary": "Core library that allows you to use tips from Cloudtips in your app",
   "description": "Core library that allows you to use tips from Cloudtips in your app",
   "homepage": "https://cloudtips.ru/",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/cloudpayments/CloudTips-SDK-iOS.git",
-    "tag": "1.1.2"
+    "tag": "1.1.6"
   },
   "source_files": "Sources/**/*.{.h,swift}",
   "resource_bundles": {

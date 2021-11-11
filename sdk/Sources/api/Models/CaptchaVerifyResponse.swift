@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct CaptchaVerifyResponse: Codable {
+struct CaptchaVerifyResponse: Codable {
     private(set) var status: String?
     private(set) var token: String?
     private(set) var title: String?

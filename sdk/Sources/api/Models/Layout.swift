@@ -6,7 +6,7 @@
 //  Copyright © 2020 Cloudtips. All rights reserved.
 //
 
-public struct Layout: Codable {
+struct Layout: Codable {
     private(set) var layoutId: String?
     private(set) var defaultLayout: Bool?
     private(set) var disabled: Bool?

@@ -12,6 +12,8 @@ public class TipsConfiguration {
     internal let phoneNumber: String
     internal let userName: String?
     internal let agentCode: String?
+    internal var feeFromPayerEnabled: Bool?
+    internal var feeFromPayerState: String?
     internal private(set) var applePayMerchantId: String = ""
     internal private(set) var testMode: Bool = false
     

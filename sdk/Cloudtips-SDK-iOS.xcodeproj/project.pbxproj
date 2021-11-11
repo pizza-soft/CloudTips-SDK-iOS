@@ -48,6 +48,8 @@
 		83AF1CA8253040A300A0424B /* TipsConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83AF1CA7253040A300A0424B /* TipsConfiguration.swift */; };
 		83B4FAF7252B1911008ED235 /* PaymentDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */; };
 		83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83D5A31725276EE800DF0562 /* PaymentResponse.swift */; };
+		B1111C39273A8B0500B26A9F /* GetPayerFeeRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1111C38273A8B0500B26A9F /* GetPayerFeeRequest.swift */; };
+		B1111C3B273A8B5500B26A9F /* PayerFeeResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1111C3A273A8B5500B26A9F /* PayerFeeResponse.swift */; };
 		B1EFFD9C269FFDEB006568CF /* TipsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1EFFD9B269FFDEB006568CF /* TipsDelegate.swift */; };
 		F959D83DF6739A63001056FA /* Pods_Cloudtips_SDK_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5B0294FEFA6681390A73246C /* Pods_Cloudtips_SDK_iOS.framework */; };
 /* End PBXBuildFile section */
@@ -99,6 +101,8 @@
 		83AF1CA7253040A300A0424B /* TipsConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsConfiguration.swift; sourceTree = "<group>"; };
 		83B4FAF6252B1911008ED235 /* PaymentDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentDelegate.swift; sourceTree = "<group>"; };
 		83D5A31725276EE800DF0562 /* PaymentResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentResponse.swift; sourceTree = "<group>"; };
+		B1111C38273A8B0500B26A9F /* GetPayerFeeRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetPayerFeeRequest.swift; sourceTree = "<group>"; };
+		B1111C3A273A8B5500B26A9F /* PayerFeeResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PayerFeeResponse.swift; sourceTree = "<group>"; };
 		B1EFFD9B269FFDEB006568CF /* TipsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsDelegate.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -231,6 +235,7 @@
 				830985B42523731E009A3C32 /* PublicIdResponse.swift */,
 				83D5A31725276EE800DF0562 /* PaymentResponse.swift */,
 				83263F6C259366D4006F7648 /* PaymentPagesResponse.swift */,
+				B1111C3A273A8B5500B26A9F /* PayerFeeResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -255,6 +260,7 @@
 				8341E518268EEBC7007561FF /* CapthcaVerifyRequest.swift */,
 				8341E51B268EEBDC007561FF /* GetPaymentPagesRequest.swift */,
 				8341E51E268EEC1A007561FF /* BaseRequest.swift */,
+				B1111C38273A8B0500B26A9F /* GetPayerFeeRequest.swift */,
 			);
 			path = Requests;
 			sourceTree = "<group>";
@@ -387,6 +393,7 @@
 				832DB58C258B9D8400BF70B1 /* RecaptchaViewModel.swift in Sources */,
 				830985A425236FC2009A3C32 /* Layout.swift in Sources */,
 				8341E51C268EEBDC007561FF /* GetPaymentPagesRequest.swift in Sources */,
+				B1111C3B273A8B5500B26A9F /* PayerFeeResponse.swift in Sources */,
 				830985A225236FC2009A3C32 /* CloudtipsError.swift in Sources */,
 				8341E50D268EEB85007561FF /* OfflineRegisterRequest.swift in Sources */,
 				830985E525247E58009A3C32 /* UIViewController+Extensions.swift in Sources */,
@@ -399,6 +406,7 @@
 				831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */,
 				83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */,
 				830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */,
+				B1111C39273A8B0500B26A9F /* GetPayerFeeRequest.swift in Sources */,
 				8341E519268EEBC7007561FF /* CapthcaVerifyRequest.swift in Sources */,
 				830985E725247E58009A3C32 /* String+Extensions.swift in Sources */,
 				8341E51F268EEC1A007561FF /* BaseRequest.swift in Sources */,
@@ -565,7 +573,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
@@ -594,7 +602,7 @@
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1.6;
+				MARKETING_VERSION = 1.1.7;
 				PRODUCT_BUNDLE_IDENTIFIER = "ru.cloudtips.Cloudtips-SDK-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;

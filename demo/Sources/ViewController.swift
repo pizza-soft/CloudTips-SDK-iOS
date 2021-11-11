@@ -60,7 +60,5 @@ extension ViewController: TipsDelegate {
     func onTipsCancelled() {
         print("Пользователь закрыл форму")
     }
-    
-    
 }
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class CloudtipsError: Error {
+class CloudtipsError: Error {
     static let defaultCardError = CloudtipsError.init(message: "Unable to determine bank")
     
     public let message: String

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol TipsDelegate: class {
+public protocol TipsDelegate: AnyObject {
     func onTipsSuccessed()
     func onTipsCancelled()
 }

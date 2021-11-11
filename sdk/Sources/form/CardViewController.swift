@@ -51,7 +51,9 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
             }
         }
         
-        if let amount = self.paymentData?.amount {
+        //let amountForTitle = self.paymentData!.feeFromPayer ? self.paymentData?.amountPayerFee : self.paymentData?.amount
+        
+        if let amount = self.paymentData!.feeFromPayer ? self.paymentData?.amountPayerFee : self.paymentData?.amount {
             self.payButton.setTitle("Оплатить " + NumberFormatter.currencyString(from: amount), for: .normal)
         }
         

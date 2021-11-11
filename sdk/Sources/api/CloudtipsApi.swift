@@ -8,7 +8,7 @@
 
 import CloudpaymentsNetworking
 
-public class CloudtipsApi {
+class CloudtipsApi {
     private let defaultCardHolderName = "Cloudtips SDK"
     
     private let threeDsSuccessURL = "https://cloudtips.ru/success"
@@ -50,7 +50,8 @@ public class CloudtipsApi {
              "currency": paymentData.currency.rawValue,
              "comment": paymentData.comment ?? "",
              "layoutId": paymentData.layoutId,
-             "captchaVerificationToken": captchaToken]
+             "captchaVerificationToken": captchaToken,
+             "feeFromPayer": paymentData.feeFromPayer]
         
         AuthPaymentRequest(params: params).execute(onSuccess: { layouts in
             completion?(layouts, nil)
@@ -85,6 +86,15 @@ public class CloudtipsApi {
     
     func getPaymentPages(by layoutId: String, completion: CloudtipsRequestCompletion<PaymentPagesResponse>?) {
         GetPaymentPagesRequest(layoutId: layoutId).execute(onSuccess: { layouts in
+            completion?(layouts, nil)
+        }, onError: { error in
+            completion?(nil, error)
+        })
+    }
+    
+    func getPayerFee(layoutId: String, amount: String, completion: CloudtipsRequestCompletion<PayerFeeResponse>?) {
+        
+        GetPayerFeeRequest(layoutId: layoutId, amount: amount).execute(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)

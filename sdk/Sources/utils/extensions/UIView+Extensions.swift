@@ -9,7 +9,7 @@
 import UIKit
 
 extension UIViewController {
-
+    
     func addLogoToNavigationBarItem() {
         let imageView = UIImageView.init(image: UIImage.named("ic_main_logo"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -17,8 +17,17 @@ extension UIViewController {
         imageView.contentMode = .scaleAspectFit
         
         let contentView = UIView()
+        contentView.backgroundColor = .white
+        contentView.layer.cornerRadius = 8
         contentView.addSubview(imageView)
-        imageView.bindCenterToSuperViewCenter()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            contentView.topAnchor.constraint(equalTo: imageView.topAnchor, constant: -4),
+            contentView.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: -8),
+            contentView.rightAnchor.constraint(equalTo: imageView.rightAnchor, constant: 8),
+            contentView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 4)
+        ])
         
         self.navigationItem.titleView = contentView
     }

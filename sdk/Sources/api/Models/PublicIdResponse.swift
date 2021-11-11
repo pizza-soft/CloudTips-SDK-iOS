@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct PublicIdResponse: Codable {
+struct PublicIdResponse: Codable {
     public private(set) var publicId: String?
 }
 
