@@ -9,7 +9,7 @@
 Pod::Spec.new do |spec|
 
   spec.name         = "Cloudtips"
-  spec.version      = "1.1.6"
+  spec.version      = "1.1.7"
   spec.summary      = "Core library that allows you to use tips from Cloudtips in your app"
   spec.description  = "Core library that allows you to use tips from Cloudtips in your app"
 
