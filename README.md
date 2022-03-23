@@ -21,7 +21,7 @@ pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPa
 
 ### Использование
 
-1. Создайте объект TipsConfiguration, передайте в него номер телефона в формате +7********** и имя пользователя (если пользователя с таким номером телефона нет в системе Cloudtips, то будет зарегистрирован новый пользователь с этим именем)
+1) Создайте объект TipsConfiguration, передайте в него номер телефона в формате +7********** и имя пользователя (если пользователя с таким номером телефона нет в системе Cloudtips, то будет зарегистрирован новый пользователь с этим именем)
 
 Если вы являетесь партнером CloudTips, передайте в конфигурацию id партнера
 ```
@@ -32,13 +32,20 @@ let configuration = TipsConfiguration.init(phoneNumber: "+79001234567", userName
 let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo", testMode: true) //Если необходимо включить режим тестирования
 ```
 
-2. Для возможности оплаты с Apple Pay передайте в конфигурацию ваш Apple Pay merchant id.
+2) Для возможности оплаты с Apple Pay передайте в конфигурацию ваш Apple Pay merchant id.
 
 ```
 configuration.setApplePayMerchantId("merchant.ru.cloudpayments")
 ```
 
-3. Вызовите TipsViewController внутри вашего контроллера
+3) Для изменения цвета navigation бара и цвета крестика задайте значения
+
+```
+configuration.navigationBackgroundColor = .white
+configuration.navigationTintColor = .blue
+```
+
+4) Вызовите TipsViewController внутри вашего контроллера
 
 ```
 TipsViewController.present(with: configuration, from: self)

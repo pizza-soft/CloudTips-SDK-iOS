@@ -9,7 +9,7 @@
 import CloudpaymentsNetworking
 
 class GetPaymentPagesRequest: BaseRequest, CloudpaymentsRequestType {
-    typealias ResponseType = PaymentPagesResponse
+    typealias ResponseType = PaymentPageModel
     
     private let layoutId: String
     

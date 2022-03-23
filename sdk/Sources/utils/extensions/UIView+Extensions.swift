@@ -21,7 +21,7 @@ extension UIViewController {
         contentView.layer.cornerRadius = 8
         contentView.addSubview(imageView)
         contentView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             contentView.topAnchor.constraint(equalTo: imageView.topAnchor, constant: -4),
             contentView.leftAnchor.constraint(equalTo: imageView.leftAnchor, constant: -8),

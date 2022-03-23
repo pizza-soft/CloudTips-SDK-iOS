@@ -27,6 +27,20 @@ public class BasePaymentViewController: BaseViewController, PaymentDelegate {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationController?.navigationBar.tintColor = configuration.navigationTintColor ?? UIColor.init(named: "azure")
+        navigationController?.navigationBar.backgroundColor = configuration.navigationBackgroundColor ?? .white
+
+        if #available(iOS 15.0, *) {
+            let appearance = UINavigationBarAppearance()
+            appearance.configureWithOpaqueBackground()
+            appearance.backgroundColor = configuration.navigationBackgroundColor ?? .white
+                //            appearance.shadowColor = .white
+                //            appearance.shadowImage = UIImage.color(.white)
+            navigationController?.navigationBar.standardAppearance = appearance
+            navigationController?.navigationBar.scrollEdgeAppearance = navigationController?.navigationBar.standardAppearance
+        }
+
         recaptchaV2?.configureWebView({ (webview) in
             webview.frame = self.view.bounds
         })

@@ -12,6 +12,7 @@ import PassKit
 import WebKit
 
 public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, WKNavigationDelegate {
+
     @IBOutlet private weak var progressContainerView: UIView!
     @IBOutlet private weak var progressView: ProgressView!
     @IBOutlet private weak var contentScrollView: UIScrollView!
@@ -21,7 +22,10 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet private weak var amountTextField: TextField!
     @IBOutlet private weak var amountHelperLabel: UILabel!
     @IBOutlet private weak var amountsCollectionView: UICollectionView!
+
+    @IBOutlet weak var commentView: UIView!
     @IBOutlet private weak var commentTextField: TextField!
+
     @IBOutlet private weak var applePayButtonContainer: UIView!
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!
@@ -51,8 +55,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
     
     private var applePaySucceeded = false
-    private var amountSettings: AmountSettings?
-    
+    private var amountSettings: PaymentPageAmountModel?
+    private var paymentPage: PaymentPageModel?
     
     //MARK: - Present -
     
@@ -67,9 +71,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        navigationController?.navigationBar.tintColor = UIColor.init(named: "azure")
-        
+
         HTTPResource.baseApiURLString = configuration.testMode ? HTTPResource.baseApiPreprodURLString : HTTPResource.baseApiProdURLString
         
         self.prepareUI()
@@ -149,7 +151,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private func checkLayouts(layouts: [Layout]?, error: Error?, createIfEmpty: Bool) {
         if let layout = layouts?.first {
-            self.configuration.layout = layout
+            configuration.layout = layout
             
             if let layoutId = layout.layoutId {
                 DispatchQueue.global().async { [weak self] in
@@ -158,7 +160,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     }
                     
                     let updateGroup = DispatchGroup()
-                                        
+
                     updateGroup.enter()
                     self.getPaymentPages(by: layoutId) {
                         updateGroup.leave()
@@ -176,12 +178,15 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 }
             }
         } else if createIfEmpty && layouts?.isEmpty == true {
-            self.api.offlineRegister(with: self.configuration.phoneNumber, name: self.configuration.userName, agentCode: self.configuration.agentCode) { [weak self] (layouts, error) in
+            api.offlineRegister(phoneNumber: configuration.phoneNumber,
+                                name: configuration.name,
+                                agentCode: configuration.agentCode) { [weak self] (layouts, error) in
                 guard let `self` = self else {
                     return
                 }
                 
-                self.checkLayouts(layouts: layouts, error: error, createIfEmpty: false)
+                    //self.checkLayouts(layouts: layouts, error: error, createIfEmpty: false)
+                self.updateLayout()
             }
         } else {
             if let msg = error?.localizedDescription {
@@ -195,11 +200,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             guard let `self` = self else {
                 return
             }
-            
+            self.paymentPage = response
+
             self.configuration.profile.name = response?.nameText
             self.configuration.profile.photoUrl = response?.avatarUrl
-            self.configuration.profile.purposeText = response?.paymentMessage?.ru
-            self.configuration.profile.successPageText = response?.successMessage?.ru
+            self.configuration.profile.purposeText = response?.paymentMessage.ru
+            self.configuration.profile.successPageText = response?.successMessage.ru
             self.configuration.feeFromPayerEnabled = response?.payerFee?.enabled
             self.configuration.feeFromPayerState = response?.payerFee?.initialState
             self.amountSettings = response?.amount
@@ -260,14 +266,18 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
             return should
         }
-        
+
+        self.commentTextField.didChange = {
+            self.commentTextField.isErrorMode = false
+        }
+
         self.commentTextField.shouldReturn = {
             self.commentTextField.resignFirstResponder()
             return false
         }
         
         self.amountTextField.didChange = {
-            self.setErrorMode(false)
+            self.setAmountErrorMode(false)
             
             self.amountsCollectionView.indexPathsForSelectedItems?.forEach {
                 self.amountsCollectionView.deselectItem(at: $0, animated: true)
@@ -277,8 +287,6 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             
             self.updatePayerFee()
         }
-        
-        
                 
         self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         
@@ -319,7 +327,8 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         
     @objc func updatePayerFee() {
         
-        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString) {
+        if let amountString = self.amountTextField.text,
+            let amount = NumberFormatter.currencyNumber(from: amountString) {
         
             if let layoutId = self.configuration.layout?.layoutId {
                 DispatchQueue.global().async { [weak self] in
@@ -447,7 +456,11 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.amount = NSNumber(value: 0)
         self.applePaySucceeded = false
         
-        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
+        if let amountString = self.amountTextField.text,
+            let amount = NumberFormatter.currencyNumber(from: amountString),
+            validateAmount(amount),
+            validateFields() {
+
             self.amount = amount
             
             let amountForPay = feeFromPayerSwitch.isOn ? self.amountPayerFee : self.amount
@@ -467,9 +480,6 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                     applePayController.modalPresentationStyle = .formSheet
                     self.present(applePayController, animated: true, completion: nil)
                 }
-           
-        } else {
-            self.setErrorMode(true)
         }
     }
     
@@ -479,13 +489,16 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     
     private func onPay() {
         self.amount = NSNumber(value: 0)
-        
-        if let amountString = self.amountTextField.text, let amount = NumberFormatter.currencyNumber(from: amountString), self.validateAmount(amount) {
+
+        if let amountString = self.amountTextField.text,
+           let amount = NumberFormatter.currencyNumber(from: amountString),
+           validateAmount(amount),
+           validateFields() {
+
             self.amount = amount
-            self.performSegue(withIdentifier: .tipsToCardSegue, sender: self)
-        } else {
-            self.setErrorMode(true)
+            performSegue(withIdentifier: .tipsToCardSegue, sender: self)
         }
+
     }
     
     private func validateAmount(_ amount: NSNumber) -> Bool {
@@ -503,12 +516,28 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
         
         if !isValid {
-            self.setErrorMode(true)
+            setAmountErrorMode(true)
         }
+
         return isValid
     }
+
+    private func validateFields() -> Bool {
+
+        if let paymentPage = paymentPage, let fields = paymentPage.availableFields {
+            if let comment = fields.comment,
+                let text = commentTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {
+                if comment.required && text.count == 0 {
+                    commentTextField.isErrorMode = true
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
     
-    private func setErrorMode(_ errorMode: Bool) {
+    private func setAmountErrorMode(_ errorMode: Bool) {
         self.amountTextField.isErrorMode = errorMode
         self.amountHelperLabel.textColor = errorMode ? .mainRed : .mainText
     }
@@ -535,7 +564,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         if let cell = collectionView.cellForItem(at: indexPath) as? DefaultAmountCell {
             let amount = self.defaultAmounts[indexPath.item]
             self.amountTextField.text = String(amount)
-            self.setErrorMode(false)
+            self.setAmountErrorMode(false)
             cell.setSelected(true)
             self.updatePayerFee()
         }

@@ -1,17 +1,17 @@
 PODS:
-  - Cloudpayments (1.1.1):
+  - Cloudpayments (1.1.5):
     - CloudpaymentsNetworking
   - CloudpaymentsNetworking (1.0.1)
-  - Cloudtips (1.1.6):
+  - Cloudtips (1.1.7):
     - Cloudpayments
     - ReCaptcha
     - SDWebImage (~> 5.0)
   - ReCaptcha (1.6.0):
     - ReCaptcha/Core (= 1.6.0)
   - ReCaptcha/Core (1.6.0)
-  - SDWebImage (5.12.1):
-    - SDWebImage/Core (= 5.12.1)
-  - SDWebImage/Core (5.12.1)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
 
 DEPENDENCIES:
   - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
@@ -35,18 +35,18 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: f936ef99b4e4ee2b9291e0b7748412766f479bda
+    :commit: bd3e4b4d6f738c7cfc63f03128e76302987523c5
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
   CloudpaymentsNetworking:
-    :commit: f936ef99b4e4ee2b9291e0b7748412766f479bda
+    :commit: bd3e4b4d6f738c7cfc63f03128e76302987523c5
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
-  Cloudpayments: 3be553d44b1c61da9dd85ea6365b4e719b900303
-  CloudpaymentsNetworking: c16a709b98a0a3222da8d3afa4c15eb364161e35
-  Cloudtips: 38798d64ca353ce70c580a477f9264388c136a94
+  Cloudpayments: 03778abe40d913621451f0869d644ef7c949be40
+  CloudpaymentsNetworking: c888643c447d2ba487ff47300c9ed570f07d41d6
+  Cloudtips: f71a4a0dd8db506e65ac0a87d5968ae0b507123c
   ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
-  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
 
 PODFILE CHECKSUM: 5192a6210c81601c591938afe33712601164cafb
 

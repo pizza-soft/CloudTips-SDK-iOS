@@ -43,10 +43,20 @@ class ViewController: UIViewController {
 
     @IBAction func onContinue(_ sender: UIButton) {
         if let text = self.textField.text?.phoneNumber() {
-            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo")
-            //let configuration = TipsConfiguration.init(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo", testMode: true)
+
+            let configuration = TipsConfiguration.init(phoneNumber: "+" + text, name: "Cloudtips demo user", agentCode: "ctdemo")
+            
+//            let configuration = TipsConfiguration.init(phoneNumber: "+" + text,
+//                                                       name: "Cloudtips demo user",
+//                                                       agentCode: "ctdemo",
+//                                                       testMode: true)
+
             configuration.setApplePayMerchantId("merchant.ru.cloudpayments")
             configuration.setTipsDelegate(self)
+
+//            configuration.navigationTintColor = .red
+//            configuration.navigationBackgroundColor = .yellow
+
             TipsViewController.present(with: configuration, from: self)
         }
     }

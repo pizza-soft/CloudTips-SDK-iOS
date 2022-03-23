@@ -31,3 +31,4 @@ struct Layout: Codable {
         case qrLink
     }
 }
+

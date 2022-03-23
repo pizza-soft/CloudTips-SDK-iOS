@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09282F1227C79AA8000A1EC0 /* NumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09282F0F27C79AA8000A1EC0 /* NumberFormatter.swift */; };
+		09282F1327C79AA8000A1EC0 /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09282F1027C79AA8000A1EC0 /* DateFormatter.swift */; };
+		09282F1427C79AA8000A1EC0 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09282F1127C79AA8000A1EC0 /* Formatter.swift */; };
 		8309851425236460009A3C32 /* Cloudtips_SDK_iOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 8309851225236460009A3C32 /* Cloudtips_SDK_iOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8309854D2523678C009A3C32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 830985472523678C009A3C32 /* Assets.xcassets */; };
 		83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83098551252367AA009A3C32 /* UIView+Extensions.swift */; };
@@ -55,6 +58,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		09282F0F27C79AA8000A1EC0 /* NumberFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NumberFormatter.swift; sourceTree = "<group>"; };
+		09282F1027C79AA8000A1EC0 /* DateFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
+		09282F1127C79AA8000A1EC0 /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
 		2ACC8116D6970451045324EB /* Pods-Cloudtips-SDK-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.debug.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		5B0294FEFA6681390A73246C /* Pods_Cloudtips_SDK_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Cloudtips_SDK_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5E3A0F475B258F6E8C668252 /* Pods-Cloudtips-SDK-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cloudtips-SDK-iOS.release.xcconfig"; path = "Target Support Files/Pods-Cloudtips-SDK-iOS/Pods-Cloudtips-SDK-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -214,6 +220,9 @@
 		8309859525236F9A009A3C32 /* extensions */ = {
 			isa = PBXGroup;
 			children = (
+				09282F1027C79AA8000A1EC0 /* DateFormatter.swift */,
+				09282F1127C79AA8000A1EC0 /* Formatter.swift */,
+				09282F0F27C79AA8000A1EC0 /* NumberFormatter.swift */,
 				83098551252367AA009A3C32 /* UIView+Extensions.swift */,
 				830985E225247E57009A3C32 /* String+Extensions.swift */,
 				830985E125247E57009A3C32 /* UIColor+Assets.swift */,
@@ -404,8 +413,10 @@
 				830985A325236FC2009A3C32 /* HTTP.swift in Sources */,
 				831BC01E2524C09900E6BACB /* Profile.swift in Sources */,
 				831BBFE525248F5400E6BACB /* BaseViewController.swift in Sources */,
+				09282F1227C79AA8000A1EC0 /* NumberFormatter.swift in Sources */,
 				83D5A31825276EE800DF0562 /* PaymentResponse.swift in Sources */,
 				830985E425247E58009A3C32 /* UIImage+Assets.swift in Sources */,
+				09282F1427C79AA8000A1EC0 /* Formatter.swift in Sources */,
 				B1111C39273A8B0500B26A9F /* GetPayerFeeRequest.swift in Sources */,
 				8341E519268EEBC7007561FF /* CapthcaVerifyRequest.swift in Sources */,
 				830985E725247E58009A3C32 /* String+Extensions.swift in Sources */,
@@ -421,6 +432,7 @@
 				8341E513268EEBA7007561FF /* AuthPaymentRequest.swift in Sources */,
 				8341E509268EEB5B007561FF /* GetLayoutRequest.swift in Sources */,
 				832DB588258B98B800BF70B1 /* CaptchaVerifyResponse.swift in Sources */,
+				09282F1327C79AA8000A1EC0 /* DateFormatter.swift in Sources */,
 				83098552252367AA009A3C32 /* UIView+Extensions.swift in Sources */,
 				830985E825247E58009A3C32 /* UIView+Constraints.swift in Sources */,
 				8309855A252367C0009A3C32 /* CompletionViewController.swift in Sources */,

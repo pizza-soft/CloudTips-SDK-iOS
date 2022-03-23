@@ -9,8 +9,8 @@
 import Foundation
 
 struct CaptchaVerifyResponse: Codable {
-    private(set) var status: String?
-    private(set) var token: String?
-    private(set) var title: String?
-    private(set) var detail: String?
+    let status: String?
+    let token: String?
+    let title: String?  // TODO: нужно ли в новом апи?
+    let detail: String? // TODO: нужно ли в новом апи?
 }

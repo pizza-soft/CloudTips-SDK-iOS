@@ -1,6 +1,6 @@
 {
   "name": "Cloudpayments",
-  "version": "1.1.1",
+  "version": "1.1.5",
   "summary": "Core library that allows you to use internet acquiring from CloudPayments in your app",
   "description": "Core library that allows you to use internet acquiring from CloudPayments in your app!",
   "homepage": "https://cloudpayments.ru/",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "https://github.com/cloudpayments/CloudPayments-SDK-iOS.git",
-    "tag": "1.1.1"
+    "tag": "1.1.5"
   },
   "source_files": "sdk/sdk/**/*.swift",
   "resource_bundles": {
@@ -27,5 +27,7 @@
     "CloudpaymentsNetworking": [
 
     ]
-  }
+  },
+  "swift_versions": "5.0",
+  "swift_version": "5.0"
 }

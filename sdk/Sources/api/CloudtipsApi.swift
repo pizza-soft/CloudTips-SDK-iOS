@@ -15,17 +15,49 @@ class CloudtipsApi {
     private let threeDsFailURL = "https://cloudtips.ru/fail"
     
     func getLayout(by phoneNumber: String, completion: CloudtipsRequestCompletion<[Layout]>?) {
-        GetLayoutRequest(phoneNumber: phoneNumber).execute(onSuccess: { layouts in
+        GetLayoutRequest(phoneNumber: phoneNumber).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
         })
     }
         
-    func offlineRegister(with phoneNumber: String, name: String?, agentCode: String?, completion: CloudtipsRequestCompletion<[Layout]>?) {
-        let params = ["phoneNumber" : phoneNumber, "name" : name ?? "", "agentCode" : agentCode ?? ""]
-        
-        OfflineRegisterRequest(params: params).execute(onSuccess: { layouts in
+    func offlineRegister(phoneNumber: String,
+                         name: String?,
+                         agentCode: String? = nil,
+                         email: String? = nil,
+                         type: Int? = nil,
+                         placeId: String? = nil,
+                         managerId: String? = nil,
+                         password: String? = nil,
+                         passwordConfirm: String? = nil,
+                         sendPassword: Bool? = nil,
+                         verifyPhone: Bool? = nil,
+                         leadId: String? = nil,
+                         salesCode: String? = nil,
+                         registrationSource: Int? = nil,
+                         utminfo: [String: String]? = nil,
+
+                         completion: CloudtipsRequestCompletion<ReceiversResponse>?) {
+        let params: [String : Any?] = [
+            "phoneNumber": phoneNumber,
+            "name": name ?? "",
+            "email": email,
+            "type": type,
+            "placeId": placeId,
+            "managerId": managerId,
+            "password": password,
+            "passwordConfirm": passwordConfirm,
+            "sendPassword": sendPassword ?? false,
+            "verifyPhone": verifyPhone ?? false,
+            "leadId": leadId,
+            "agentCode": agentCode ?? "",
+            "salesCode" : salesCode,
+            "registrationSource": registrationSource,
+            "utminfo" : utminfo
+        ]
+
+        OfflineRegisterRequest(params: params).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
@@ -35,25 +67,41 @@ class CloudtipsApi {
     func getPublicId(with layoutId: String, completion: CloudtipsRequestCompletion<PublicIdResponse>?) {
         let params = ["layoutId": layoutId]
         
-        GetPublicIdRequest(params: params).execute(onSuccess: { layouts in
+        GetPublicIdRequest(params: params).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
         })
     }
     
-    func auth(with paymentData: PaymentData, cryptogram: String, captchaToken: String, completion: CloudtipsRequestCompletion<PaymentResponse>?) {
-        let params: [String: Any] =
+    func auth(with paymentData: PaymentData,
+              cryptogram: String,
+              captchaToken: String,
+              completion: CloudtipsRequestCompletion<PaymentResponse>?) {
+
+        let params: [String: Any?] =
             ["cardholderName": "Cloudtips SDK",
              "cardCryptogramPacket": cryptogram,
+
              "amount": paymentData.amount,
              "currency": paymentData.currency.rawValue,
              "comment": paymentData.comment ?? "",
              "layoutId": paymentData.layoutId,
+             "feeFromPayer": paymentData.feeFromPayer,
+
+             "name": paymentData.name,
+             "invoiceId": paymentData.invoiceId,
+             "payerEmail": paymentData.payerEmail,
+             "receiverSubscriptionSettingId": paymentData.receiverSubscriptionSettingId,
+             "payerPhoneNumber": paymentData.payerPhoneNumber,
+             "payerCity": paymentData.payerCity,
+             "placeCode": paymentData.placeCode,
+             "rating": paymentData.rating,
+
              "captchaVerificationToken": captchaToken,
-             "feeFromPayer": paymentData.feeFromPayer]
+             ]
         
-        AuthPaymentRequest(params: params).execute(onSuccess: { layouts in
+        AuthPaymentRequest(params: params).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
@@ -64,7 +112,7 @@ class CloudtipsApi {
         let parameters = ["md": md,
                           "paRes": paRes]
         
-        PostThreeDsRequest(params: parameters).execute(onSuccess: { layouts in
+        PostThreeDsRequest(params: parameters).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
@@ -77,15 +125,16 @@ class CloudtipsApi {
                           "amount": amount,
                           "layoutId": layoutId] as [String : Any]
         
-        CaptchaVerifyRequest(params: parameters).execute(onSuccess: { layouts in
-            completion?(layouts, nil)
+        CaptchaVerifyRequest(params: parameters).exec(onSuccess: { response in
+            completion?(response, nil)
         }, onError: { error in
             completion?(nil, error)
         })
     }
     
-    func getPaymentPages(by layoutId: String, completion: CloudtipsRequestCompletion<PaymentPagesResponse>?) {
-        GetPaymentPagesRequest(layoutId: layoutId).execute(onSuccess: { layouts in
+    func getPaymentPages(by layoutId: String, completion: CloudtipsRequestCompletion<PaymentPageModel>?) {
+        GetPaymentPagesRequest(layoutId: layoutId).exec(dateDecodingStrategy: .customISO8601,
+                                                           onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
@@ -94,7 +143,7 @@ class CloudtipsApi {
     
     func getPayerFee(layoutId: String, amount: String, completion: CloudtipsRequestCompletion<PayerFeeResponse>?) {
         
-        GetPayerFeeRequest(layoutId: layoutId, amount: amount).execute(onSuccess: { layouts in
+        GetPayerFeeRequest(layoutId: layoutId, amount: amount).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
             completion?(nil, error)
@@ -103,3 +152,48 @@ class CloudtipsApi {
 }
 
 public typealias CloudtipsRequestCompletion<T> = (_ response: T?, _ error: Error?) -> Void
+
+// MARK: - CloudpaymentsRequestType
+
+extension CloudpaymentsRequestType {
+    func exec<T: Decodable>(dispatcher: CloudpaymentsNetworkDispatcher = CloudpaymentsURLSessionNetworkDispatcher.instance,
+                 keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy = .useDefaultKeys,
+                 dateDecodingStrategy: JSONDecoder.DateDecodingStrategy = .customISO8601,
+                 onSuccess: @escaping (T) -> Void,
+                 onError: @escaping (Error) -> Void,
+                 onRedirect: ((URLRequest) -> Bool)? = nil) {
+        dispatcher.dispatch(
+            request: self.data,
+            onSuccess: { (responseData: Data) in
+                do {
+                    let jsonDecoder = JSONDecoder()
+                    jsonDecoder.keyDecodingStrategy = keyDecodingStrategy
+                    jsonDecoder.dateDecodingStrategy = dateDecodingStrategy
+                    let apiResponse = try jsonDecoder.decode(ApiResponse<T>.self, from: responseData)
+                    switch apiResponse {
+                    case .success(let data):
+                        DispatchQueue.main.async {
+                            onSuccess(data)
+                        }
+                    case .failure(let error):
+                        throw ApiError.apiError(error.errors.joined(separator: ", "))
+                    }
+
+                } catch let error {
+                    DispatchQueue.main.async {
+                        if error is DecodingError {
+                            onError(CloudpaymentsError.parseError)
+                        } else {
+                            onError(error)
+                        }
+                    }
+                }
+            },
+            onError: { (error: Error) in
+                DispatchQueue.main.async {
+                    onError(error)
+                }
+            }, onRedirect: onRedirect
+        )
+    }
+}

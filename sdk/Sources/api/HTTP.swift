@@ -9,8 +9,8 @@
 enum HTTPResource {
     static let baseURLString = "https://pay.cloudtips.ru/"
     
-    static let baseApiProdURLString = "https://lk.cloudtips.ru/api/"
-    static let baseApiPreprodURLString = "https://lk-sandbox.cloudtips.ru/api/"
+    static let baseApiProdURLString = "https://api.cloudtips.ru/api/"
+    static let baseApiPreprodURLString = "https://api-preprod.cloudtips.ru/api/" // lk-sandbox.cloudtips.ru/api/ -> api-preprod.cloudtips.ru
     static var baseApiURLString = baseApiProdURLString
     
     case getLayout(String)
@@ -27,21 +27,23 @@ enum HTTPResource {
         
         switch self {
         case .getLayout(let phoneNumber):
-            return baseURL.appending("layouts/list/\(phoneNumber)")
+            return baseURL.appending("layouts/list/\(phoneNumber)") // layouts/list/{phoneNumber} // done
         case .offlineRegister:
-            return baseURL.appending("auth/offlineregister")
+            return baseURL.appending("receivers") // auth/offlineregister -> receivers // done
         case .getPublicId:
-            return baseURL.appending("payment/publicId")
+            return baseURL.appending("payment/publicId") // payment/publicid // done
         case .authPayment:
-            return baseURL.appending("payment/auth")
+            return baseURL.appending("payment/auth") // payment/auth
         case .post3ds:
-            return baseURL.appending("payment/post3ds")
+            return baseURL.appending("payment/post3ds") // payment/post3ds
         case .captchaVerify:
-            return baseURL.appending("captcha/verify")
+            return baseURL.appending("captcha/verify") // captcha/verify
         case .getPaymentPages(let layoutId):
-            return baseURL.appending("paymentPages/\(layoutId)")
+            return baseURL.appending("paymentpages/\(layoutId)") // paymentpages/{layoutId} // done
         case .getPayerFee:
-            return baseURL.appending("payment/fee")
+            return baseURL.appending("payment/fee") // done
         }
     }
 }
+
+
