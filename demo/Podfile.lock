@@ -1,8 +1,8 @@
 PODS:
-  - Cloudpayments (1.1.5):
+  - Cloudpayments (1.1.6):
     - CloudpaymentsNetworking
   - CloudpaymentsNetworking (1.0.1)
-  - Cloudtips (1.1.7):
+  - Cloudtips (1.1.8):
     - Cloudpayments
     - ReCaptcha
     - SDWebImage (~> 5.0)
@@ -35,19 +35,19 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: bd3e4b4d6f738c7cfc63f03128e76302987523c5
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
   CloudpaymentsNetworking:
-    :commit: bd3e4b4d6f738c7cfc63f03128e76302987523c5
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
-  Cloudpayments: 03778abe40d913621451f0869d644ef7c949be40
+  Cloudpayments: e4cea0e9c1decaf6047a4916946a2cf19b1f860b
   CloudpaymentsNetworking: c888643c447d2ba487ff47300c9ed570f07d41d6
-  Cloudtips: f71a4a0dd8db506e65ac0a87d5968ae0b507123c
+  Cloudtips: 1b7db53d4a9af508cb31a6cab464b309c9cea9c8
   ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
   SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
 
 PODFILE CHECKSUM: 5192a6210c81601c591938afe33712601164cafb
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

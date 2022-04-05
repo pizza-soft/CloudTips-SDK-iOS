@@ -40,8 +40,8 @@ public class TipsConfiguration {
     public var navigationBackgroundColor: UIColor?
 
     public init(phoneNumber: String,
-                name: String?,
-                agentCode: String? = nil,
+                userName: String?,
+                partner: String? = nil,
                 email: String? = nil,
                 type: Int? = nil,
                 placeId: String? = nil,
@@ -57,8 +57,8 @@ public class TipsConfiguration {
                 testMode: Bool = false) {
 
         self.phoneNumber = phoneNumber
-        self.name = name
-        self.agentCode = agentCode
+        self.name = userName
+        self.agentCode = partner
         self.email = email
         self.type = type
         self.placeId = placeId
