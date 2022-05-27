@@ -36,16 +36,16 @@ class CompletionViewController: BasePaymentViewController {
             self.dismiss(animated: true)
             
             if (self.isTipsSuccessed) {
-                self.configuration.tipsDelegate?.delegate?.onTipsSuccessed()
+                self.configuration.delegate?.onTipsSuccessed()
             } else {
-                self.configuration.tipsDelegate?.delegate?.onTipsCancelled()
+                self.configuration.delegate?.onTipsCancelled()
             }
         }
     }
     
     private func updateUI() {
         if let photoUrl = self.configuration.profile.photoUrl, let url = URL.init(string: photoUrl) {
-            self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
+            self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.bundle("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
                 if cacheType == .none && image != nil {
                     UIView.animate(withDuration: 0.2, animations: {
                         self.profileImageView.alpha = 0
@@ -56,7 +56,7 @@ class CompletionViewController: BasePaymentViewController {
                         })
                     })
                 } else {
-                    self.profileImageView.image = image ?? UIImage.named("ic_avatar_placeholder")
+                    self.profileImageView.image = image ?? UIImage.bundle("ic_avatar_placeholder")
                     self.profileImageView.alpha = 1
                 }
             })

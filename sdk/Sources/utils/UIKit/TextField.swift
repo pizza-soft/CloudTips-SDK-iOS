@@ -13,7 +13,7 @@ class TextField: UITextField, UITextFieldDelegate {
     private var underlineView : UIView?
     
     @IBInspectable var defaultTextColor: UIColor = UIColor.black
-    @IBInspectable var errorColor: UIColor = UIColor.border
+    @IBInspectable var errorColor: UIColor = UIColor.red // UIColor.border
     
     @IBInspectable var activeUnderlineColor: UIColor = UIColor.clear
     @IBInspectable var passiveUnderlineColor: UIColor = UIColor.clear
@@ -127,6 +127,7 @@ class TextField: UITextField, UITextFieldDelegate {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        initialize()
     }
     
     public override func awakeFromNib() {
@@ -138,9 +139,10 @@ class TextField: UITextField, UITextFieldDelegate {
     func delegateIfNeeded() -> Void {
         if self.delegate == nil {
             self.delegate = self
-        } else if !self.delegate!.isEqual(self){
-            self.delegate = self
         }
+//        else if !self.delegate!.isEqual(self){
+//            self.delegate = self
+//        }
     }
     
     private func getActiveBorderColor() -> UIColor {

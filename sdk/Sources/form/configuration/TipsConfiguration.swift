@@ -31,8 +31,8 @@ public class TipsConfiguration {
     internal private(set) var applePayMerchantId: String = ""
     internal private(set) var testMode: Bool = false
     
-    internal private(set) var tipsDelegate: TipsDelegateImpl? = nil
-    
+    internal private(set) weak var delegate: TipsDelegate?
+
     var layout: Layout?
     var profile: Profile = Profile()
 
@@ -79,7 +79,7 @@ public class TipsConfiguration {
     }
     
     public func setTipsDelegate(_ delegate: TipsDelegate) {
-        self.tipsDelegate = TipsDelegateImpl.init(delegate: delegate)
+        self.delegate = delegate
     }
 }
 

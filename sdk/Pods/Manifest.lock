@@ -1,0 +1,75 @@
+PODS:
+  - Cloudpayments (1.1.6):
+    - CloudpaymentsNetworking
+  - CloudpaymentsNetworking (1.0.1)
+  - PromiseKit/CorePromise (6.17.1)
+  - ReCaptcha (1.6.0):
+    - ReCaptcha/Core (= 1.6.0)
+  - ReCaptcha/Core (1.6.0)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
+  - SnapKit (5.6.0)
+  - YandexLoginSDK (2.0.2)
+  - YandexMobileMetrica (4.2.0):
+    - YandexMobileMetrica/Static (= 4.2.0)
+  - YandexMobileMetrica/Static (4.2.0):
+    - YandexMobileMetrica/Static/Core (= 4.2.0)
+    - YandexMobileMetrica/Static/Crashes (= 4.2.0)
+  - YandexMobileMetrica/Static/Core (4.2.0)
+  - YandexMobileMetrica/Static/Crashes (4.2.0):
+    - YandexMobileMetrica/Static/Core
+  - YandexPaySDK/Static (0.0.1):
+    - PromiseKit/CorePromise (~> 6.0)
+    - YandexLoginSDK (~> 2.0.2)
+
+DEPENDENCIES:
+  - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
+  - CloudpaymentsNetworking (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
+  - ReCaptcha
+  - SDWebImage (~> 5.0)
+  - SnapKit
+  - YandexMobileMetrica
+  - YandexPaySDK/Static (from `./YandexPaySDK`)
+
+SPEC REPOS:
+  trunk:
+    - PromiseKit
+    - ReCaptcha
+    - SDWebImage
+    - SnapKit
+    - YandexLoginSDK
+    - YandexMobileMetrica
+
+EXTERNAL SOURCES:
+  Cloudpayments:
+    :branch: master
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  CloudpaymentsNetworking:
+    :branch: master
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  YandexPaySDK:
+    :path: "./YandexPaySDK"
+
+CHECKOUT OPTIONS:
+  Cloudpayments:
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  CloudpaymentsNetworking:
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
+    :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+
+SPEC CHECKSUMS:
+  Cloudpayments: e4cea0e9c1decaf6047a4916946a2cf19b1f860b
+  CloudpaymentsNetworking: c888643c447d2ba487ff47300c9ed570f07d41d6
+  PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
+  ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  YandexLoginSDK: cd407482207b4b7da75c5f7d7fd2fdd6a604c325
+  YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
+  YandexPaySDK: cd66a631eb79b3da92749546ffb8886f09728950
+
+PODFILE CHECKSUM: 78730e3d2258c6faa70f8cde11c4d91602edeffd
+
+COCOAPODS: 1.11.2

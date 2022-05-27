@@ -13,18 +13,3 @@ public protocol TipsDelegate: AnyObject {
     func onTipsCancelled()
 }
 
-internal class TipsDelegateImpl {
-    weak var delegate: TipsDelegate?
-    
-    init(delegate: TipsDelegate?) {
-        self.delegate = delegate
-    }
-    
-    func tipsSuccessed(){
-        self.delegate?.onTipsSuccessed()
-    }
-    
-    func tipsCancelled() {
-        self.delegate?.onTipsCancelled()
-    }
-}

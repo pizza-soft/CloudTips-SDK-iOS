@@ -29,7 +29,7 @@ class ProgressView: UIView {
     private func initialize(){
         self.backgroundColor = .clear
         
-        self.progressIcon = UIImageView.init(image: UIImage.named("ic_progress"))
+        self.progressIcon = UIImageView.init(image: UIImage.bundle("ic_progress"))
         self.progressIcon.translatesAutoresizingMaskIntoConstraints = false
         self.addSubview(self.progressIcon)
         

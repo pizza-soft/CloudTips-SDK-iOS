@@ -1,11 +1,16 @@
 # Uncomment the next line to define a global platform for your project
-platform :ios, '11.0'
+platform :ios, '12.0'
 use_frameworks!
 
 target 'Cloudtips-SDK-iOS' do
   pod 'SDWebImage', '~> 5.0'
   pod 'Cloudpayments', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
   pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPayments-SDK-iOS", :branch => "master"
-  pod "ReCaptcha"
-  
+  pod 'ReCaptcha'
+  pod 'YandexMobileMetrica'
+  #pod 'PromiseKit'
+  #pod 'YandexLoginSDK', :modular_headers => true
+  pod 'SnapKit'
+  #pod 'YandexPaySDK', :path => './YandexPaySDK'
+  pod 'YandexPaySDK/Static', :path => './YandexPaySDK'
 end

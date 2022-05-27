@@ -1,0 +1,44 @@
+{
+  "name": "YandexPaySDK",
+  "version": "0.0.1",
+  "summary": "SDK for Yandex Pay.",
+  "homepage": "generic-homepage",
+  "license": {
+    "type": "Proprietary",
+    "text": "2020 © Yandex. All rights reserved."
+  },
+  "authors": {
+    "": ""
+  },
+  "platforms": {
+    "ios": "12.0"
+  },
+  "swift_versions": "5.0",
+  "requires_arc": true,
+  "source": {
+    "http": "file://somefile"
+  },
+  "frameworks": [
+    "UIKit",
+    "Foundation"
+  ],
+  "dependencies": {
+    "PromiseKit/CorePromise": [
+      "~> 6.0"
+    ],
+    "YandexLoginSDK": [
+      "~> 2.0.2"
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "Static",
+      "vendored_frameworks": [
+        "Static/YandexPaySDK.xcframework",
+        "Static/XPlatPaySDK.xcframework"
+      ],
+      "resources": "Static/YandexPaySDKResources.bundle"
+    }
+  ],
+  "swift_version": "5.0"
+}

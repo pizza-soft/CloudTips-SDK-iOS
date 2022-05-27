@@ -11,7 +11,7 @@ import UIKit
 extension UIViewController {
     
     func addLogoToNavigationBarItem() {
-        let imageView = UIImageView.init(image: UIImage.named("ic_main_logo"))
+        let imageView = UIImageView.init(image: UIImage.bundle("ic_main_logo"))
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.heightAnchor.constraint(equalToConstant: 32).isActive = true
         imageView.contentMode = .scaleAspectFit

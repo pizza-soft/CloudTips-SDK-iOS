@@ -2,5 +2,8 @@ ${PODS_ROOT}/Target Support Files/Pods-Cloudtips-SDK-iOS-Demo/Pods-Cloudtips-SDK
 ${BUILT_PRODUCTS_DIR}/Cloudpayments/Cloudpayments.framework
 ${BUILT_PRODUCTS_DIR}/CloudpaymentsNetworking/CloudpaymentsNetworking.framework
 ${BUILT_PRODUCTS_DIR}/Cloudtips/Cloudtips.framework
+${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework
 ${BUILT_PRODUCTS_DIR}/ReCaptcha/ReCaptcha.framework
 ${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework
+${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework
+${BUILT_PRODUCTS_DIR}/YandexLoginSDK/YandexLoginSDK.framework

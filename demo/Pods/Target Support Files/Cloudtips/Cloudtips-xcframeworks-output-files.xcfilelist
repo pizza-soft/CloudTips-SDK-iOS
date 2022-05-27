@@ -1,0 +1,2 @@
+${PODS_XCFRAMEWORKS_BUILD_DIR}/Cloudtips/YandexPaySDK.framework
+${PODS_XCFRAMEWORKS_BUILD_DIR}/Cloudtips/XPlatPaySDK.framework

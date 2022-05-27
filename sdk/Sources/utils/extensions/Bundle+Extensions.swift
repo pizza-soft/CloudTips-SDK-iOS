@@ -9,9 +9,9 @@
 import Foundation
 
 extension Bundle {
-    class var mainSdk: Bundle {
+    class var tipsSdk: Bundle {
         let bundle = Bundle.init(for: TipsViewController.self)
-        let bundleUrl = bundle.url(forResource: "Cloudtips", withExtension: "bundle")
+        let bundleUrl = bundle.url(forResource: "CloudtipsSDK", withExtension: "bundle")
         return Bundle.init(url: bundleUrl!)!
     }
 }

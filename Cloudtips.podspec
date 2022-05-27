@@ -21,7 +21,7 @@ Pod::Spec.new do |spec|
 			"Sergey Iskhakov" => "s.iskhakov@cloudpayments.ru" }
 	
   spec.platform     = :ios
-  spec.ios.deployment_target = "11.0"
+  spec.ios.deployment_target = "12.0"
 
   spec.source       = { :git => "https://github.com/cloudpayments/CloudTips-SDK-iOS.git", :tag => "#{spec.version}" }
   spec.source_files  = 'sdk/Sources/**/*.{.h,swift}'
@@ -30,7 +30,10 @@ Pod::Spec.new do |spec|
   
   spec.requires_arc = true
   
+  spec.vendored_frameworks = 'YandexPaySDK.xcframework', 'XPlatPaySDK.xcframework'
+
   spec.dependency 'SDWebImage', '~> 5.0'
   spec.dependency 'Cloudpayments'
   spec.dependency 'ReCaptcha'
+  spec.dependency 'YandexLoginSDK'
 end

@@ -1,24 +1,45 @@
 PODS:
-  - Cloudpayments (1.1.0):
+  - Cloudpayments (1.1.6):
     - CloudpaymentsNetworking
   - CloudpaymentsNetworking (1.0.1)
+  - PromiseKit/CorePromise (6.17.0)
   - ReCaptcha (1.6.0):
     - ReCaptcha/Core (= 1.6.0)
   - ReCaptcha/Core (1.6.0)
-  - SDWebImage (5.11.1):
-    - SDWebImage/Core (= 5.11.1)
-  - SDWebImage/Core (5.11.1)
+  - SDWebImage (5.12.5):
+    - SDWebImage/Core (= 5.12.5)
+  - SDWebImage/Core (5.12.5)
+  - SnapKit (5.0.1)
+  - YandexLoginSDK (2.0.2)
+  - YandexMobileMetrica (4.2.0):
+    - YandexMobileMetrica/Static (= 4.2.0)
+  - YandexMobileMetrica/Static (4.2.0):
+    - YandexMobileMetrica/Static/Core (= 4.2.0)
+    - YandexMobileMetrica/Static/Crashes (= 4.2.0)
+  - YandexMobileMetrica/Static/Core (4.2.0)
+  - YandexMobileMetrica/Static/Crashes (4.2.0):
+    - YandexMobileMetrica/Static/Core
+  - YandexPaySDK/Static (0.0.1):
+    - PromiseKit/CorePromise (~> 6.0)
+    - YandexLoginSDK (~> 2.0.2)
 
 DEPENDENCIES:
   - Cloudpayments (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
   - CloudpaymentsNetworking (from `https://github.com/cloudpayments/CloudPayments-SDK-iOS`, branch `master`)
   - ReCaptcha
   - SDWebImage (~> 5.0)
+  - SnapKit
+  - YandexMobileMetrica
+  - YandexPaySDK/Static (from `./YandexPaySDK`)
 
 SPEC REPOS:
   trunk:
+    - PromiseKit
     - ReCaptcha
     - SDWebImage
+    - SnapKit
+    - YandexLoginSDK
+    - YandexMobileMetrica
 
 EXTERNAL SOURCES:
   Cloudpayments:
@@ -27,21 +48,28 @@ EXTERNAL SOURCES:
   CloudpaymentsNetworking:
     :branch: master
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
+  YandexPaySDK:
+    :path: "./YandexPaySDK"
 
 CHECKOUT OPTIONS:
   Cloudpayments:
-    :commit: 6bdd8be84fb420b7b1bcd82966a51a4806927650
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
   CloudpaymentsNetworking:
-    :commit: 6bdd8be84fb420b7b1bcd82966a51a4806927650
+    :commit: 199b7007acbc534c7fa1e1af452ece6b65ae5043
     :git: https://github.com/cloudpayments/CloudPayments-SDK-iOS
 
 SPEC CHECKSUMS:
-  Cloudpayments: ee7ae571b7cd037df3309649f61eb91ee9b5feff
-  CloudpaymentsNetworking: c16a709b98a0a3222da8d3afa4c15eb364161e35
+  Cloudpayments: e4cea0e9c1decaf6047a4916946a2cf19b1f860b
+  CloudpaymentsNetworking: c888643c447d2ba487ff47300c9ed570f07d41d6
+  PromiseKit: 996202d4cae72b7801b312abef4cd2f995b2978a
   ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
-  SDWebImage: a7f831e1a65eb5e285e3fb046a23fcfbf08e696d
+  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  YandexLoginSDK: cd407482207b4b7da75c5f7d7fd2fdd6a604c325
+  YandexMobileMetrica: f5f9c605eaaba33ff6ab2b6bc3259035ca60ed87
+  YandexPaySDK: cd66a631eb79b3da92749546ffb8886f09728950
 
-PODFILE CHECKSUM: 8cf8c1600d1102b38ed8349d59b005f2f7ed56df
+PODFILE CHECKSUM: 78730e3d2258c6faa70f8cde11c4d91602edeffd
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3

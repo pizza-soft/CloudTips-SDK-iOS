@@ -14,7 +14,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.textField.didChange = {
             if let text = self.textField.text {
                 self.textField.text = text.formattedPhoneNumber()
@@ -44,8 +44,9 @@ class ViewController: UIViewController {
     @IBAction func onContinue(_ sender: UIButton) {
         if let text = self.textField.text?.phoneNumber() {
 
+
 //            let configuration = TipsConfiguration(phoneNumber: "+" + text, userName: "Cloudtips demo user", partner: "ctdemo")
-            
+
             let configuration = TipsConfiguration(phoneNumber: "+" + text,
                                                   userName: "Cloudtips demo user",
                                                   partner: "ctdemo",

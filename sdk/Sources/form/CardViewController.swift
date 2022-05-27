@@ -21,9 +21,8 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
     @IBOutlet weak var toolbar: UIToolbar!
     @IBOutlet private weak var googleWebView: WKWebView!
     
-    private var threeDsView: UIView?
-    
-    private let threeDsProcessor = ThreeDsProcessor()
+    //private var threeDsView: UIView?
+    //private let threeDsProcessor = ThreeDsProcessor()
 
     //MARK: - Lifecycle -
     
@@ -189,19 +188,19 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
             let icon: UIImage?
             switch cardType {
             case .visa:
-                icon = UIImage.named("ic_visa")
+                icon = UIImage.bundle("ic_visa")
             case .americanExpress:
-                icon = UIImage.named("ic_amex")
+                icon = UIImage.bundle("ic_amex")
             case .jcb:
-                icon = UIImage.named("ic_jcb")
+                icon = UIImage.bundle("ic_jcb")
             case .maestro:
-                icon = UIImage.named("ic_maestro")
+                icon = UIImage.bundle("ic_maestro")
             case .masterCard:
-                icon = UIImage.named("ic_master")
+                icon = UIImage.bundle("ic_master")
             case .mir:
-                icon = UIImage.named("ic_mir")
+                icon = UIImage.bundle("ic_mir")
             case .troy:
-                icon = UIImage.named("ic_troy")
+                icon = UIImage.bundle("ic_troy")
             default:
                 icon = nil
             }
@@ -241,10 +240,10 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
         }
     }
     
-    private func showThreeDs(with acsUrl: String, md: String, paReq: String) {
-        let threeDsData = ThreeDsData.init(transactionId: md, paReq: paReq, acsUrl: acsUrl)
-        self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
-    }
+//    private func showThreeDs(with acsUrl: String, md: String, paReq: String) {
+//        let threeDsData = ThreeDsData.init(transactionId: md, paReq: paReq, acsUrl: acsUrl)
+//        self.threeDsProcessor.make3DSPayment(with: threeDsData, delegate: self)
+//    }
     
     @IBAction private func onDone(_ sender: Any) {
         self.view.endEditing(true)
@@ -287,8 +286,9 @@ class CardViewController: BasePaymentViewController, WKNavigationDelegate {
     }
 }
 
-//MARK: - ThreeDsDelegate -
+// MARK: - ThreeDsDelegate -
 
+/*
 extension CardViewController: ThreeDsDelegate {
     func willPresentWebView(_ webView: WKWebView) {
         if let view = self.navigationController?.view {
@@ -392,3 +392,4 @@ extension CardViewController: ThreeDsDelegate {
 
     }
 }
+*/

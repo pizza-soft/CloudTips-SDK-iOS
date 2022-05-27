@@ -26,11 +26,21 @@ Pod::Spec.new do |spec|
   spec.source       = { :git => "https://github.com/cloudpayments/CloudTips-SDK-iOS.git", :tag => "#{spec.version}" }
   spec.source_files  = 'Sources/**/*.{.h,swift}'
 
-  spec.resource_bundles = { 'Cloudtips' => ['Resources/**/*.{json,png,jpeg,jpg,storyboard,xib,xcassets}']} 
+  spec.resource_bundles = { 'CloudtipsSDK' => [
+    'Resources/**/*.{json,png,jpeg,jpg,storyboard,xib,xcassets}'
+    ]
+  }
   
   spec.requires_arc = true
   
   spec.dependency 'SDWebImage', '~> 5.0'
   spec.dependency 'Cloudpayments'
   spec.dependency 'ReCaptcha'
+  spec.dependency 'YandexLoginSDK'
+  spec.dependency 'PromiseKit/CorePromise'
+  spec.dependency 'SnapKit'
+
+  spec.vendored_frameworks = 'YandexPaySDK/Static/YandexPaySDK.xcframework', 'YandexPaySDK/Static/XPlatPaySDK.xcframework'
+  spec.resources = ["YandexPaySDK/Static/YandexPaySDKResources.bundle"]
+
 end

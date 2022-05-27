@@ -100,7 +100,16 @@ class CloudtipsApi {
 
              "captchaVerificationToken": captchaToken,
              ]
-        
+
+//        if let theJSONData = try?  JSONSerialization.data(
+//            withJSONObject: params,
+//            options: .prettyPrinted
+//        ),
+//           let theJSONText = String(data: theJSONData,
+//                                    encoding: String.Encoding.ascii) {
+//            print("JSON string = \n\(theJSONText)")
+//        }
+
         AuthPaymentRequest(params: params).exec(onSuccess: { layouts in
             completion?(layouts, nil)
         }, onError: { error in
@@ -190,6 +199,9 @@ extension CloudpaymentsRequestType {
                 }
             },
             onError: { (error: Error) in
+
+                //let str = String(decoding: data, as: UTF8.self)
+
                 DispatchQueue.main.async {
                     onError(error)
                 }

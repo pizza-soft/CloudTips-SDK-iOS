@@ -19,6 +19,58 @@ pod 'CloudpaymentsNetworking', :git => "https://github.com/cloudpayments/CloudPa
 * **demo** - Пример реализации приложения с использованием SDK
 * **sdk** - Исходный код SDK
 
+## Инициализация CloudtipsSDK
+
+В `AppDelegate.swift` вашего проекта в методе `application(_:didFinishLaunchingWithOptions:)` осуществите инициализацию SDK:
+
+Если в проекте используется YandexPay, то для настройки YandexLoginSDK используйте пункты 1-3 [инструкции](https://yandex.ru/dev/mobileauthsdk/doc/sdk/concepts/ios/2.0.0/sdk-ios-install.html).
+
+```swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    do {
+        // Инициализируйте SDK 
+        // Если в проекте используется YandexPay, то необходимо указать соответсвующие параметры:
+        // yandexPayAppId - ваш appId, который вы получили при настройке YandexLoginSDK
+        // sandboxMode - режим песочницы YandexPay
+        let yaAppId = "..."
+        try CloudtipsSDK.initialize(yandexPayAppId: yaAppId, sandboxMode: false)
+    } catch {
+        fatalError("Unable to initialize CloudtipsSDK.")
+    }
+        
+    // Инициализируйте UIWindow и ViewController
+    let controller = ViewController()
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    window.rootViewController = controller
+    window.makeKeyAndVisible()
+    self.window = window
+        
+    return true
+}
+```
+
+Также в `AppDelegate.swift` вашего проекта добавьте нотификацию `CloudtipsSDK` о событиях жизенного цикла приложения:
+
+```swift
+func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
+    CloudtipsSDK.instance.applicationDidReceiveUserActivity(userActivity)
+    return true
+}
+
+func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    CloudtipsSDK.instance.applicationDidReceiveOpen(url, sourceApplication: options[.sourceApplication] as? String)
+    return true
+}
+    
+func applicationWillEnterForeground(_ application: UIApplication) {
+    CloudtipsSDK.instance.applicationWillEnterForeground()
+}
+    
+func applicationDidBecomeActive(_ application: UIApplication) {
+    CloudtipsSDK.instance.applicationDidBecomeActive()
+}
+```
+
 ### Использование
 
 1) Создайте объект TipsConfiguration, передайте в него номер телефона в формате +7********** и имя пользователя (если пользователя с таким номером телефона нет в системе Cloudtips, то будет зарегистрирован новый пользователь с этим именем)

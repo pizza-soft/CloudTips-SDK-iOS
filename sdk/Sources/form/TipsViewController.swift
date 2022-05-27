@@ -10,6 +10,8 @@ import UIKit
 import SDWebImage
 import PassKit
 import WebKit
+import YandexPaySDK
+import SnapKit
 
 public class TipsViewController: BasePaymentViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, WKNavigationDelegate {
 
@@ -26,6 +28,11 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet weak var commentView: UIView!
     @IBOutlet private weak var commentTextField: TextField!
 
+    @IBOutlet weak var appleTitleLabel: UILabel!
+
+    @IBOutlet weak var payButtonsStackView: UIStackView!
+    @IBOutlet weak var yandexPayButtonContainerView: UIView!
+
     @IBOutlet private weak var applePayButtonContainer: UIView!
     @IBOutlet private weak var payButton: Button!
     @IBOutlet private weak var eulaButton: Button!
@@ -36,6 +43,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet weak var feeFromPayerView: UIView!
     @IBOutlet weak var feeFromPayerSwitch: UISwitch!
     @IBOutlet weak var feeFromPayerLabel: UILabel!
+
+    private lazy var yaPayButton: YandexPayButton = {
+        let configuration = YandexPayButtonConfiguration(theme: .init(appearance: .dark),
+                                                         personalization: .personalized)
+        let button = YandexPaySDKApi.instance.createButton(configuration: configuration, delegate: self)
+        return button
+    }()
     
     private var supportedPaymentNetworks: [PKPaymentNetwork] {
         get {
@@ -53,15 +67,15 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     private var amountPayerFee = NSNumber.init(value: 0)
     private var captchaToken: String?
 
-    
     private var applePaySucceeded = false
     private var amountSettings: PaymentPageAmountModel?
     private var paymentPage: PaymentPageModel?
-    
+    private var publicIdResponse: PublicIdResponse?
+
     //MARK: - Present -
     
     public class func present(with configuration: TipsConfiguration, from: UIViewController) {
-        let navController = UIStoryboard.init(name: "Main", bundle: Bundle.mainSdk).instantiateInitialViewController() as! UINavigationController
+        let navController = UIStoryboard.init(name: "Main", bundle: Bundle.tipsSdk).instantiateInitialViewController() as! UINavigationController
         let controller = navController.topViewController as! TipsViewController
         controller.configuration = configuration
         from.present(navController, animated: true, completion: nil)
@@ -110,6 +124,14 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     //MARK: - Private -
     
     private func initializeApplePay() {
+
+        applePayButtonContainer.isHidden = true
+        appleTitleLabel.isHidden = true
+
+        if !(paymentPage?.applePayEnabled ?? false) {
+            return
+        }
+
         if !self.configuration.applePayMerchantId.isEmpty && PKPaymentAuthorizationViewController.canMakePayments() {
             let button: PKPaymentButton
             if PKPaymentAuthorizationController.canMakePayments(usingNetworks: self.supportedPaymentNetworks) {
@@ -127,12 +149,12 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                 button.layer.cornerRadius = 4
                 button.layer.masksToBounds = true
             }
-            
+
+            appleTitleLabel.isHidden = false
+
             self.applePayButtonContainer.isHidden = false
             self.applePayButtonContainer.addSubview(button)
             button.bindFrameToSuperviewBounds()
-        } else {
-            self.applePayButtonContainer.isHidden = true
         }
     }
     
@@ -194,7 +216,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             }
         }
     }
-        
+
     private func getPaymentPages(by layoutId: String, completion: @escaping () -> ()) {
         api.getPaymentPages(by: layoutId) { [weak self] (response, error) in
             guard let `self` = self else {
@@ -209,25 +231,36 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.configuration.feeFromPayerEnabled = response?.payerFee?.enabled
             self.configuration.feeFromPayerState = response?.payerFee?.initialState
             self.amountSettings = response?.amount
+
+            CloudtipsApi().getPublicId(with: layoutId) { (publicId, error) in
+                debugPrint(publicId)
+                self.publicIdResponse = publicId
+            }
             
             completion()
         }
     }
     
-    private func prepareUI(){
-        self.initializeApplePay()
+    private func prepareUI() {
+
+        if CloudtipsSDK.yandexPayAppId != nil {
+            yandexPayButtonContainerView.addSubview(yaPayButton)
+            yaPayButton.snp.makeConstraints {
+                $0.edges.equalToSuperview()
+            }
+        }
+
+        profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2
+        profileImageView.layer.masksToBounds = true
         
-        self.profileImageView.layer.cornerRadius = self.profileImageView.frame.height/2
-        self.profileImageView.layer.masksToBounds = true
+        amountTextField.inputAccessoryView = self.toolbar
+        commentTextField.inputAccessoryView = self.toolbar
         
-        self.amountTextField.inputAccessoryView = self.toolbar
-        self.commentTextField.inputAccessoryView = self.toolbar
-        
-        self.amountTextField.shouldReturn = {
+        amountTextField.shouldReturn = {
             self.commentTextField.becomeFirstResponder()
             return false
         }
-        self.amountTextField.shouldChangeCharactersInRange = { range, text in
+        amountTextField.shouldChangeCharactersInRange = { range, text in
             let possibleCharacters = CharacterSet.decimalDigits.union(CharacterSet.init(charactersIn: ",."))
             var should = possibleCharacters.isSuperset(of: CharacterSet.init(charactersIn: text))
             
@@ -267,16 +300,16 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             return should
         }
 
-        self.commentTextField.didChange = {
+        commentTextField.didChange = {
             self.commentTextField.isErrorMode = false
         }
 
-        self.commentTextField.shouldReturn = {
+        commentTextField.shouldReturn = {
             self.commentTextField.resignFirstResponder()
             return false
         }
         
-        self.amountTextField.didChange = {
+        amountTextField.didChange = {
             self.setAmountErrorMode(false)
             
             self.amountsCollectionView.indexPathsForSelectedItems?.forEach {
@@ -288,7 +321,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             self.updatePayerFee()
         }
                 
-        self.amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
+        amountsCollectionView.contentInset = UIEdgeInsets.init(top: 0, left: 20, bottom: 0, right: 20)
         
         let attributes1: [NSAttributedString.Key : Any] =
             [.foregroundColor : UIColor.mainText,
@@ -301,19 +334,19 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         let attributedTitle2 = NSMutableAttributedString.init(string: "условиями сервиса", attributes: attributes2)
         
         attributedTitle1.append(attributedTitle2)
-        self.eulaButton.setAttributedTitle(attributedTitle1, for: .normal)
+        eulaButton.setAttributedTitle(attributedTitle1, for: .normal)
         
-        self.eulaButton.onAction = {
+        eulaButton.onAction = {
             if let url = URL.init(string: "https://static.cloudpayments.ru/docs/cloudtips_oferta.pdf"), UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
         }
         
-        self.payButton.onAction = {
+        payButton.onAction = {
             self.onPay()
         }
         
-        self.feeFromPayerSwitch.addTarget(self, action: #selector(payerFeeSwitchChanged), for: UIControl.Event.valueChanged)
+        feeFromPayerSwitch.addTarget(self, action: #selector(payerFeeSwitchChanged), for: UIControl.Event.valueChanged)
     }
     
     @objc func payerFeeSwitchChanged() {
@@ -388,7 +421,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
             }
             
         if let photoUrl = self.configuration.profile.photoUrl, let url = URL.init(string: photoUrl) {
-                self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.named("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
+                self.profileImageView.sd_setImage(with: url, placeholderImage: UIImage.bundle("ic_avatar_placeholder"), options: .avoidAutoSetImage, completed: { (image, error, cacheType, url) in
                     if cacheType == .none && image != nil {
                         UIView.animate(withDuration: 0.2, animations: {
                             self.profileImageView.alpha = 0
@@ -399,7 +432,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
                             })
                         })
                     } else {
-                        self.profileImageView.image = image ?? UIImage.named("ic_avatar_placeholder")
+                        self.profileImageView.image = image ?? UIImage.bundle("ic_avatar_placeholder")
                         self.profileImageView.alpha = 1
                     }
                 })
@@ -412,24 +445,25 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         let maxAmountString = NumberFormatter.currencyString(from: NSNumber.init(value: maxAmount), withDigits: 0)
         
         let minMaxString = "Введите сумму от \(minAmountString) до \(maxAmountString)"
-        self.amountHelperLabel.text = minMaxString
-        
-        self.feeFromPayerSwitch.onTintColor = .azure
+        amountHelperLabel.text = minMaxString
+
+        feeFromPayerSwitch.onTintColor = .azure
         
         if (configuration.feeFromPayerEnabled ?? false) {
-            self.feeFromPayerView.isHidden = false
+            feeFromPayerView.isHidden = false
         } else {
-            self.feeFromPayerView.isHidden = true
+            feeFromPayerView.isHidden = true
         }
         
         if (configuration.feeFromPayerState == "Enabled") {
-            self.feeFromPayerSwitch.isOn = true
+            feeFromPayerSwitch.isOn = true
         } else {
-            self.feeFromPayerSwitch.isOn = false
-
+            feeFromPayerSwitch.isOn = false
         }
         
-        self.feeFromPayerLabel.text = "Так вы компенсируете комиссию сервиса, а с вашей карты спишется \(self.amountPayerFee) Р"
+        feeFromPayerLabel.text = "Так вы компенсируете комиссию сервиса, а с вашей карты спишется \(amountPayerFee) Р"
+
+        initializeApplePay()
     }
     
     private func getMinAmount() -> Double {
@@ -450,11 +484,11 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.progressView.stopAnimation()
     }
     
-    //MARK: - Actions -
+    // MARK: - Actions -
     
     @objc private func onApplePay(_ sender: UIButton) {
-        self.amount = NSNumber(value: 0)
-        self.applePaySucceeded = false
+        amount = NSNumber(value: 0)
+        applePaySucceeded = false
         
         if let amountString = self.amountTextField.text,
             let amount = NumberFormatter.currencyNumber(from: amountString),
@@ -463,9 +497,9 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
             self.amount = amount
             
-            let amountForPay = feeFromPayerSwitch.isOn ? self.amountPayerFee : self.amount
+            let amountForPay = feeFromPayerSwitch.isOn ? amountPayerFee : amount
             
-            self.captchaToken = nil
+            captchaToken = nil
             
                 let request = PKPaymentRequest()
                 request.merchantIdentifier = self.configuration.applePayMerchantId
@@ -546,7 +580,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         self.view.endEditing(true)
     }
     
-    //MARK: - UICollectionViewDataSource -
+    // MARK: - UICollectionViewDataSource -
     
     public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.defaultAmounts.count
@@ -576,13 +610,13 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
     }
     
-    //MARK: - UICollectionViewDelegateFlowLayout -
+    // MARK: - UICollectionViewDelegateFlowLayout -
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 6.0
     }
     
-    //MARK: - Prepare for segue -
+    // MARK: - Prepare for segue -
     
     public override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let identifier = segue.identifier {
@@ -608,7 +642,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         }
     }
     
-    //MARK: - Keyboard -
+    // MARK: - Keyboard -
     
     @objc internal override func onKeyboardWillShow(_ notification: Notification) {
         super.onKeyboardWillShow(notification)
@@ -630,7 +664,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         print("hide")
     }
     
-    //MARK: - WKNavigationDelegate -
+    // MARK: - WKNavigationDelegate -
     
     public func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
         if navigationAction.navigationType == .linkActivated {
@@ -644,7 +678,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     }
 }
 
-//MARK: - PKPaymentAuthorizationViewControllerDelegate -
+// MARK: - PKPaymentAuthorizationViewControllerDelegate -
 
 extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
     public func paymentAuthorizationViewControllerDidFinish(_ controller: PKPaymentAuthorizationViewController) {
@@ -686,3 +720,134 @@ extension TipsViewController: PKPaymentAuthorizationViewControllerDelegate {
 
     }
 }
+
+
+// MARK: - YandexPayButtonDelegate
+
+extension TipsViewController: YandexPayButtonDelegate {
+
+    public func yandexPayButton(_ button: YandexPayButton, didCompletePaymentWithResult result: YPPaymentResult) {
+        switch result {
+        case .succeeded(let paymentInfo):
+                // Payment was complete successfuly
+            //showAlertMessage(title: "Success!", message: "\(paymentInfo)")
+            self.yandexPayProcess(paymentInfo.paymentToken)
+        case .failed(let paymentError):
+                // An error occured while processing payment (e.g. validation error)
+            showAlertMessage(title: "Error!", message: "\(paymentError)")
+        case .cancelled:
+                // Payment window was dismissed by user
+            break
+            //showAlertMessage(title: "Cancelled!", message: "Payment has been cancelled by the user.")
+        @unknown default:
+            return
+        }
+    }
+
+    private func yandexPayProcess(_ token: String) {
+
+        if let layoutId = self.configuration.layout?.layoutId,
+           let decodedData = Data(base64Encoded: token),
+           let decodedToken = String(data: decodedData, encoding: .utf8) {
+
+            let paymentData = PaymentData.init(
+                layoutId: layoutId,
+                amount: self.amount,
+                comment: self.commentTextField.text,
+                amountPayerFee: self.amountPayerFee,
+                feeFromPayer: self.feeFromPayerSwitch.isOn
+            )
+
+            self.auth(with: paymentData, cryptogram: decodedToken, captchaToken: "") { (response, error) in
+
+                self.hideProgress()
+                if let response = response {
+                    if response.statusCode == .need3ds, let acsUrl = response.acsUrl, let md = response.md, let paReq = response.paReq {
+                        self.showThreeDs(with: acsUrl, md: md, paReq: paReq)
+                    } else if response.statusCode == .success {
+                        self.onPaymentSucceeded()
+                    } else if response.statusCode == .failure {
+                        let ctError = CloudtipsError.init(message: response.message ?? "Ошибка")
+                        self.onPaymentFailed(with: ctError)
+                    }
+                } else {
+                    let ctError = CloudtipsError.init(message: error?.localizedDescription ?? "Ошибка")
+                    self.onPaymentFailed(with: ctError)
+                }
+
+//                if response?.statusCode == .success {
+//                    self.paymentError = nil
+//                    self.onPaymentSucceeded()
+//                } else {
+//                    let error = CloudtipsError.init(message: response?.message ?? error?.localizedDescription ?? "")
+//                    self.paymentError = error
+//                    self.onPaymentFailed(with: error)
+//                }
+            }
+        }
+
+    }
+
+    public func yandexPayButtonDidRequestViewControllerForPresentation(_ button: YandexPayButton) -> UIViewController? {
+            // Return current UIViewController as controller for presentation
+        return self
+    }
+
+    public func yandexPayButtonDidRequestPaymentSheet(_ button: YandexPayButton) -> YPPaymentSheet? {
+
+        guard let gatewayMerchantId = publicIdResponse?.publicId else { return nil }
+
+        if let amountString = self.amountTextField.text,
+           let amount = NumberFormatter.currencyNumber(from: amountString),
+           validateAmount(amount),
+           validateFields() {
+
+            self.amount = amount
+
+            let amountForPay = feeFromPayerSwitch.isOn ? amountPayerFee : amount
+
+            return YPPaymentSheet(
+                countryCode: .ru,
+                currencyCode: .rub,
+                merchant: YPMerchant(
+                    id: "1193a702-d3c0-4637-a7c0-2ac95b73ee29",
+                    name: "cloudpayments",
+                    origin: "https://cloudtips.ru"
+                ),
+                order: YPOrder(
+                    id: "ORDER-ID",
+                    amount: amountForPay.stringValue
+                ),
+                paymentMethods: [
+                    .card(
+                        YPCardPaymentMethod(
+                            gateway: "cloudpayments",
+                            gatewayMerchantId: gatewayMerchantId, // api/payment/publicid
+                            allowedAuthMethods: [
+                                .panOnly
+                            ],
+                            allowedCardNetworks: [
+                                .mastercard,
+                                .visa,
+                                .mir
+                            ]
+                        )
+                    )
+                ]
+            )
+        } else {
+            return nil
+        }
+    }
+}
+
+    // MARK: - Helpers
+
+extension TipsViewController {
+    private func showAlertMessage(title: String, message: String) {
+        let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(controller, animated: true)
+    }
+}
+

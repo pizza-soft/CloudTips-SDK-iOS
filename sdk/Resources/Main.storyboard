@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i6h-zR-G8v">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="i6h-zR-G8v">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
@@ -32,7 +32,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PEX-XB-C3t">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="847.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1035"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Qz3-R9-jKe">
                                                 <rect key="frame" x="0.0" y="30" width="414" height="96"/>
@@ -73,7 +73,7 @@
                                                 </constraints>
                                             </view>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IzN-af-xSn">
-                                                <rect key="frame" x="0.0" y="156" width="414" height="691.5"/>
+                                                <rect key="frame" x="0.0" y="156" width="414" height="879"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ln5-Vj-63L">
                                                         <rect key="frame" x="0.0" y="0.0" width="414" height="111"/>
@@ -87,7 +87,7 @@
                                                                 <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSc-sc-bDp" customClass="TextField" customModule="Cloudtips" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Сумма" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kSc-sc-bDp" customClass="TextField" customModule="Cloudtips">
                                                                 <rect key="frame" x="20" y="36" width="374" height="56"/>
                                                                 <color key="backgroundColor" name="veryLightBlue"/>
                                                                 <constraints>
@@ -126,7 +126,7 @@
                                                                         <color key="value" name="inputGrayBorder"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="errorColor">
-                                                                        <color key="value" name="color_red"/>
+                                                                        <color key="value" name="red"/>
                                                                     </userDefinedRuntimeAttribute>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="defaultTextColor">
                                                                         <color key="value" name="mainText"/>
@@ -229,7 +229,7 @@
                                                                 <color key="textColor" name="section_title_color"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Напишите Ваш комментарий" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mxy-HT-HZH" customClass="TextField" customModule="Cloudtips" customModuleProvider="target">
+                                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Напишите Ваш комментарий" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Mxy-HT-HZH" customClass="TextField" customModule="Cloudtips">
                                                                 <rect key="frame" x="20" y="36" width="374" height="56"/>
                                                                 <color key="backgroundColor" name="veryLightBlue"/>
                                                                 <constraints>
@@ -318,20 +318,19 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWk-Kw-aUC">
-                                                        <rect key="frame" x="0.0" y="375.5" width="414" height="189"/>
+                                                        <rect key="frame" x="0.0" y="375.5" width="414" height="376.5"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="BBR-F0-KZe">
-                                                                <rect key="frame" x="20" y="10" width="374" height="132"/>
+                                                                <rect key="frame" x="20" y="10" width="374" height="319.5"/>
                                                                 <subviews>
-                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSc-2a-7oU">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="56"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="height" constant="56" id="6Ah-A1-asN"/>
-                                                                        </constraints>
-                                                                    </view>
+                                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Apple Pay доступен для карт Тинькофф" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZEn-i6-dNa">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="19.5"/>
+                                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                        <color key="textColor" name="section_title_color"/>
+                                                                        <nil key="highlightedColor"/>
+                                                                    </label>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljc-FA-NQj" customClass="Button" customModule="Cloudtips" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="76" width="374" height="56"/>
+                                                                        <rect key="frame" x="0.0" y="63.5" width="374" height="56"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="56" id="4ic-Zd-C1U"/>
@@ -355,10 +354,24 @@
                                                                             </userDefinedRuntimeAttribute>
                                                                         </userDefinedRuntimeAttributes>
                                                                     </button>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="te3-5a-trv">
+                                                                        <rect key="frame" x="0.0" y="163.5" width="374" height="56"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="56" id="ypi-io-UMk"/>
+                                                                        </constraints>
+                                                                    </view>
+                                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OSc-2a-7oU">
+                                                                        <rect key="frame" x="0.0" y="263.5" width="374" height="56"/>
+                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="height" constant="56" id="6Ah-A1-asN"/>
+                                                                        </constraints>
+                                                                    </view>
                                                                 </subviews>
                                                             </stackView>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-Ur-UUk" customClass="Button" customModule="Cloudtips" customModuleProvider="target">
-                                                                <rect key="frame" x="20" y="157" width="374" height="32"/>
+                                                                <rect key="frame" x="20" y="344.5" width="374" height="32"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="32" id="4xd-lE-nra"/>
                                                                 </constraints>
@@ -380,7 +393,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="szs-3K-7wW">
-                                                        <rect key="frame" x="0.0" y="574.5" width="414" height="47"/>
+                                                        <rect key="frame" x="0.0" y="762" width="414" height="47"/>
                                                         <subviews>
                                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Cas-GW-Tpi">
                                                                 <rect key="frame" x="20" y="15" width="374" height="32"/>
@@ -412,7 +425,7 @@
                                                         </constraints>
                                                     </view>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYS-Ge-uRH">
-                                                        <rect key="frame" x="0.0" y="631.5" width="414" height="60"/>
+                                                        <rect key="frame" x="0.0" y="819" width="414" height="60"/>
                                                         <subviews>
                                                             <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zil-kC-VFI">
                                                                 <rect key="frame" x="20" y="10" width="374" height="30"/>
@@ -507,6 +520,7 @@
                         <outlet property="amountTextField" destination="kSc-sc-bDp" id="6aF-kS-aoz"/>
                         <outlet property="amountsCollectionView" destination="Y08-nY-Weh" id="mL5-1l-fm7"/>
                         <outlet property="applePayButtonContainer" destination="OSc-2a-7oU" id="XKV-c9-EUN"/>
+                        <outlet property="appleTitleLabel" destination="ZEn-i6-dNa" id="F9w-Hb-XCZ"/>
                         <outlet property="captchaWebViewContainer" destination="768-aC-FyO" id="eoa-B3-XGd"/>
                         <outlet property="commentTextField" destination="Mxy-HT-HZH" id="uTb-qJ-m74"/>
                         <outlet property="commentView" destination="oMG-2P-7Au" id="1am-1P-ZaP"/>
@@ -519,11 +533,13 @@
                         <outlet property="googleWebView" destination="Zil-kC-VFI" id="Y05-Cz-Mf4"/>
                         <outlet property="nameLabel" destination="vdU-s4-18f" id="5qb-6X-ner"/>
                         <outlet property="payButton" destination="Ljc-FA-NQj" id="igI-6V-YLP"/>
+                        <outlet property="payButtonsStackView" destination="BBR-F0-KZe" id="3lG-RL-1yG"/>
                         <outlet property="profileImageView" destination="jhI-wp-gSd" id="bLh-sU-N7o"/>
                         <outlet property="progressContainerView" destination="u6I-6c-dPs" id="n4Q-c8-oYA"/>
                         <outlet property="progressView" destination="W5X-9D-Smu" id="EYk-Gh-n5u"/>
                         <outlet property="purposeLabel" destination="uAG-1o-g0k" id="bjq-Dk-B1L"/>
                         <outlet property="toolbar" destination="NL5-Ly-8e0" id="rVp-F6-aJa"/>
+                        <outlet property="yandexPayButtonContainerView" destination="te3-5a-trv" id="amv-GI-mY8"/>
                         <segue destination="aou-pE-QZc" kind="show" identifier="TipsToCardSegue" id="ivN-wl-ECp"/>
                         <segue destination="bRu-YF-96i" kind="show" identifier="ToResultSegue" id="PhF-Kq-76C"/>
                     </connections>
@@ -962,7 +978,7 @@
                                         <color key="textColor" name="red"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-Xg-7o0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XLW-Xg-7o0">
                                         <rect key="frame" x="168" y="50" width="46.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="textColor" name="mainText"/>

@@ -175,6 +175,7 @@ struct PaymentPageModel: Codable {
 
     var payerFee: PayerFee?
     var feedback: FeedbackModel?
+
 }
 
 struct RatingComponentsModel: Codable {
