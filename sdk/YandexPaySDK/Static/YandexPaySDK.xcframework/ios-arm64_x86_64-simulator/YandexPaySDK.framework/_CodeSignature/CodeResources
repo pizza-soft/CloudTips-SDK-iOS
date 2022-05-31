@@ -14,7 +14,7 @@
 		</data>
 		<key>Info.plist</key>
 		<data>
-		L+FUqx3M6K84Q4JWjyjd6+ckkZQ=
+		Zcj2LDmBM+mU+Alvd3MR0rvxOns=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		8xx9dfqhocW5dT06qwunWj0rKc8=
+		263/lKTrzmwuEliAdQ5GNWZrKWg=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		8xx9dfqhocW5dT06qwunWj0rKc8=
+		263/lKTrzmwuEliAdQ5GNWZrKWg=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		Z7pWqBkLeUhVUgwrE5S1/nulQrA=
+		nOanI2n19GEEGsgOMVTV9xK1UO8=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		Z7pWqBkLeUhVUgwrE5S1/nulQrA=
+		nOanI2n19GEEGsgOMVTV9xK1UO8=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -119,11 +119,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8xx9dfqhocW5dT06qwunWj0rKc8=
+			263/lKTrzmwuEliAdQ5GNWZrKWg=
 			</data>
 			<key>hash2</key>
 			<data>
-			sczOBl2EQBdYDnnQweUQh7GmUeTXh8vKs6z4NvwjQCs=
+			rjz+QuZipgXY5pelqlyYvVdjaeUvl2t+f6Tf4RRfrss=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftdoc</key>
@@ -152,11 +152,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			8xx9dfqhocW5dT06qwunWj0rKc8=
+			263/lKTrzmwuEliAdQ5GNWZrKWg=
 			</data>
 			<key>hash2</key>
 			<data>
-			sczOBl2EQBdYDnnQweUQh7GmUeTXh8vKs6z4NvwjQCs=
+			rjz+QuZipgXY5pelqlyYvVdjaeUvl2t+f6Tf4RRfrss=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -185,11 +185,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Z7pWqBkLeUhVUgwrE5S1/nulQrA=
+			nOanI2n19GEEGsgOMVTV9xK1UO8=
 			</data>
 			<key>hash2</key>
 			<data>
-			QfUlOQN1lP+jT1/t/C7EvFx5HtorhDSdCvyngW0vhT4=
+			u0LekbwMc1oFP2UkLMdLP8+fM92HWzVsUviTPXUW0RI=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftdoc</key>
@@ -218,11 +218,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			Z7pWqBkLeUhVUgwrE5S1/nulQrA=
+			nOanI2n19GEEGsgOMVTV9xK1UO8=
 			</data>
 			<key>hash2</key>
 			<data>
-			QfUlOQN1lP+jT1/t/C7EvFx5HtorhDSdCvyngW0vhT4=
+			u0LekbwMc1oFP2UkLMdLP8+fM92HWzVsUviTPXUW0RI=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

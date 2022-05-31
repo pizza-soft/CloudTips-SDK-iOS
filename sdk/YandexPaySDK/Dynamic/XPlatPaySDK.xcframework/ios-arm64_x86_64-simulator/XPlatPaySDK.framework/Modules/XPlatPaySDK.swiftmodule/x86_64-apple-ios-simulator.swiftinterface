@@ -133,7 +133,7 @@ open class SyncUserCardRequest : XPlatPaySDK.BaseNetworkRequest {
   @objc deinit
 }
 open class MobileBackendInvalidAuthorizationError : XPlatPaySDK.ExternalConvertibleError {
-  public init(_ message: Swift.String)
+  public init(with message: Swift.String)
   @discardableResult
   open class func tokenExchangeError(_ reason: Swift.String) -> XPlatPaySDK.MobileBackendInvalidAuthorizationError
   @discardableResult
