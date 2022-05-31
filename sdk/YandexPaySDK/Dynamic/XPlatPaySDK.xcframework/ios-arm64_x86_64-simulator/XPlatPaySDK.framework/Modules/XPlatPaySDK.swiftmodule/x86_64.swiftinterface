@@ -133,7 +133,7 @@ open class SyncUserCardRequest : XPlatPaySDK.BaseNetworkRequest {
   @objc deinit
 }
 open class MobileBackendInvalidAuthorizationError : XPlatPaySDK.ExternalConvertibleError {
-  public init(with message: Swift.String)
+  public init(_ message: Swift.String)
   @discardableResult
   open class func tokenExchangeError(_ reason: Swift.String) -> XPlatPaySDK.MobileBackendInvalidAuthorizationError
   @discardableResult
@@ -2965,10 +2965,10 @@ open class SealedNetworkRequest : XPlatPaySDK.NetworkRequest {
   @objc deinit
 }
 open class CheckBindingPaymentResponse : XPlatPaySDK.DiehardStatus3dsResponse {
-  final public let paymentMethodId: Swift.String
+  final public let cardId: Swift.String
   final public let rrn: Swift.String!
   final public let redirectUrl: Swift.String!
-  public init(_ status: Swift.String, _ statusCode: Swift.String!, _ statusDescription: Swift.String!, _ paymentMethodId: Swift.String, _ rrn: Swift.String!, _ redirectUrl: Swift.String!, _ status3ds: Swift.String!)
+  public init(_ status: Swift.String, _ statusCode: Swift.String!, _ statusDescription: Swift.String!, _ cardId: Swift.String, _ rrn: Swift.String!, _ redirectUrl: Swift.String!, _ status3ds: Swift.String!)
   @discardableResult
   open class func fromJsonItem(_ item: XPlatPaySDK.JSONItem) -> XPlatPaySDK.Result<XPlatPaySDK.CheckBindingPaymentResponse>
   override public init(_ status: Swift.String, _ statusCode: Swift.String!, _ statusDescription: Swift.String!, _ status3ds: Swift.String!)

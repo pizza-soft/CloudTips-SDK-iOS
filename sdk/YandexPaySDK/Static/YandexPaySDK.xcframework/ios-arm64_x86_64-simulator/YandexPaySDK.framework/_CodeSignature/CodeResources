@@ -6,7 +6,7 @@
 	<dict>
 		<key>Headers/YandexPaySDK-Swift.h</key>
 		<data>
-		4KvCBQ9a1AkQBpUxbGd1QTm1YSg=
+		Jk4Yoi+j4X2eKYL//17AgwCHzqU=
 		</data>
 		<key>Headers/YandexPaySDK.h</key>
 		<data>
@@ -26,7 +26,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		2mFyi25KLBE79PBdHVhe2fbBqYw=
+		8xx9dfqhocW5dT06qwunWj0rKc8=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftdoc</key>
 		<data>
@@ -38,7 +38,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftmodule</key>
 		<data>
-		2mFyi25KLBE79PBdHVhe2fbBqYw=
+		8xx9dfqhocW5dT06qwunWj0rKc8=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -50,7 +50,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		uqyZqnsFp/Yrd1AqBsGOvB3yiMY=
+		Z7pWqBkLeUhVUgwrE5S1/nulQrA=
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftdoc</key>
 		<data>
@@ -62,7 +62,7 @@
 		</data>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftmodule</key>
 		<data>
-		uqyZqnsFp/Yrd1AqBsGOvB3yiMY=
+		Z7pWqBkLeUhVUgwrE5S1/nulQrA=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -75,11 +75,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4KvCBQ9a1AkQBpUxbGd1QTm1YSg=
+			Jk4Yoi+j4X2eKYL//17AgwCHzqU=
 			</data>
 			<key>hash2</key>
 			<data>
-			wIBcakqtpinCj4ZmAa4hmigWOZjP6juhBgwK8gWUU/4=
+			YRbsYegP+ASJR8fMtLVZOj1Q2rD2Hpg4O8a54iHA08Q=
 			</data>
 		</dict>
 		<key>Headers/YandexPaySDK.h</key>
@@ -119,11 +119,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2mFyi25KLBE79PBdHVhe2fbBqYw=
+			8xx9dfqhocW5dT06qwunWj0rKc8=
 			</data>
 			<key>hash2</key>
 			<data>
-			v+91LhGXXE6JFyTbxUX9+gt+rIq51G0jKVULEQz0zS8=
+			sczOBl2EQBdYDnnQweUQh7GmUeTXh8vKs6z4NvwjQCs=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/arm64.swiftdoc</key>
@@ -152,11 +152,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			2mFyi25KLBE79PBdHVhe2fbBqYw=
+			8xx9dfqhocW5dT06qwunWj0rKc8=
 			</data>
 			<key>hash2</key>
 			<data>
-			v+91LhGXXE6JFyTbxUX9+gt+rIq51G0jKVULEQz0zS8=
+			sczOBl2EQBdYDnnQweUQh7GmUeTXh8vKs6z4NvwjQCs=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -185,11 +185,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uqyZqnsFp/Yrd1AqBsGOvB3yiMY=
+			Z7pWqBkLeUhVUgwrE5S1/nulQrA=
 			</data>
 			<key>hash2</key>
 			<data>
-			DmFRrbugBWmcZdriAtdtcaCEk8t69HnhuPQ2vLI7F0o=
+			QfUlOQN1lP+jT1/t/C7EvFx5HtorhDSdCvyngW0vhT4=
 			</data>
 		</dict>
 		<key>Modules/YandexPaySDK.swiftmodule/x86_64.swiftdoc</key>
@@ -218,11 +218,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			uqyZqnsFp/Yrd1AqBsGOvB3yiMY=
+			Z7pWqBkLeUhVUgwrE5S1/nulQrA=
 			</data>
 			<key>hash2</key>
 			<data>
-			DmFRrbugBWmcZdriAtdtcaCEk8t69HnhuPQ2vLI7F0o=
+			QfUlOQN1lP+jT1/t/C7EvFx5HtorhDSdCvyngW0vhT4=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
