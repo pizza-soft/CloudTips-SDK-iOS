@@ -13,9 +13,9 @@ PODS:
   - ReCaptcha (1.6.0):
     - ReCaptcha/Core (= 1.6.0)
   - ReCaptcha/Core (1.6.0)
-  - SDWebImage (5.12.5):
-    - SDWebImage/Core (= 5.12.5)
-  - SDWebImage/Core (5.12.5)
+  - SDWebImage (5.12.6):
+    - SDWebImage/Core (= 5.12.6)
+  - SDWebImage/Core (5.12.6)
   - SnapKit (5.6.0)
   - YandexLoginSDK (2.0.2)
 
@@ -56,10 +56,10 @@ SPEC CHECKSUMS:
   Cloudtips: 4a1f76b4023b95f291aa9d43b57689bc8023c6bf
   PromiseKit: ee485df3d4dc570594d7e7aecae6352697dc6a4c
   ReCaptcha: d493ed256054a7b6a7eabcaf0b47ec9a8f42a16e
-  SDWebImage: 0905f1b7760fc8ac4198cae0036600d67478751e
+  SDWebImage: a47aea9e3d8816015db4e523daff50cfd294499d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   YandexLoginSDK: cd407482207b4b7da75c5f7d7fd2fdd6a604c325
 
-PODFILE CHECKSUM: d4fa5937f0c9ee1b1771ecebd00da65dbc5a6ebf
+PODFILE CHECKSUM: 9fbe7346377dd84046aa18cc50c297c3c32fcfa4
 
 COCOAPODS: 1.11.3

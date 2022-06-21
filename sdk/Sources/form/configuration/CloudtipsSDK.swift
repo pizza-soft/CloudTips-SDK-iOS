@@ -20,13 +20,12 @@ final public class CloudtipsSDK {
         return CloudtipsSDK()
     }()
 
-    public static func initialize(yandexPayAppId: String?, sandboxMode: Bool?) throws {
+    public static func initialize(yandexPayAppId: String?, sandboxMode: Bool? = false) throws {
         Self.yandexPayAppId = yandexPayAppId
-        if let yandexPayAppId = yandexPayAppId, let isSandboxMode = sandboxMode {
-            //let appId = "baaa4b67539a4f479145b644a07cf30a"
-            let configuration = YandexPaySDKConfiguration(environment: isSandboxMode ? .sandbox : .production)
-            try YandexPaySDKApi.initialize(configuration: configuration, appId: yandexPayAppId)
-        }
+
+        let configuration = YandexPaySDKConfiguration(environment: (sandboxMode ?? false) ? .sandbox : .production)
+        try YandexPaySDKApi.initialize(configuration: configuration)
+
         initialized = true
     }
 

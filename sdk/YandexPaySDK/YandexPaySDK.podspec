@@ -1,6 +1,6 @@
 Pod::Spec.new do |spec|
   spec.name         	     = "YandexPaySDK"
-  spec.version     	       = "1.0.1"
+  spec.version     	       = "1.1.0"
   spec.summary      	     = "SDK for Yandex Pay."
   spec.homepage     	     = 'generic-homepage'
 

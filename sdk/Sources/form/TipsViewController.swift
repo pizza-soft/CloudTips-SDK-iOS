@@ -45,8 +45,19 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
     @IBOutlet weak var feeFromPayerLabel: UILabel!
 
     private lazy var yaPayButton: YandexPayButton = {
-        let configuration = YandexPayButtonConfiguration(theme: .init(appearance: .dark),
-                                                         personalization: .personalized)
+            // Укажите тему для кнопки
+        let theme: YandexPayButtonTheme
+        if #available(iOS 13.0, *) {
+                // Параметр `dynamic` позволяет указать, нужно ли кнопке
+                // менять свою цветовую палитру вместе со сменой системной темы
+            theme = YandexPayButtonTheme(appearance: .dark, dynamic: true)
+        } else {
+            theme = YandexPayButtonTheme(appearance: .dark)
+        }
+
+            // Инициализируйте конфигурацию
+        let configuration = YandexPayButtonConfiguration(theme: theme)
+
         let button = YandexPaySDKApi.instance.createButton(configuration: configuration, delegate: self)
         return button
     }()
@@ -812,7 +823,7 @@ extension TipsViewController: YandexPayButtonDelegate {
                 merchant: YPMerchant(
                     id: "1193a702-d3c0-4637-a7c0-2ac95b73ee29",
                     name: "cloudpayments",
-                    origin: "https://cloudtips.ru"
+                    url: "https://cloudtips.ru"
                 ),
                 order: YPOrder(
                     id: "ORDER-ID",

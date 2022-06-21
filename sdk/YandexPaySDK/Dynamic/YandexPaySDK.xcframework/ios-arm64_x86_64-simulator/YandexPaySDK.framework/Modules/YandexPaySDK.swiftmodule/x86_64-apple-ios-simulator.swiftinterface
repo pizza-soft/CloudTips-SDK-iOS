@@ -121,14 +121,13 @@ public enum ValidationError : Foundation.LocalizedError {
 }
 public struct YandexPayButtonConfiguration {
   public let theme: YandexPaySDK.YandexPayButtonTheme
-  public let personalization: YandexPaySDK.YandexPayButtonPersonalization
-  public init(theme: YandexPaySDK.YandexPayButtonTheme, personalization: YandexPaySDK.YandexPayButtonPersonalization)
+  public init(theme: YandexPaySDK.YandexPayButtonTheme)
 }
 public struct YPMerchant {
   public let id: YandexPaySDK.YPMerchantID
   public let name: Swift.String
-  public let origin: Swift.String
-  public init(id: YandexPaySDK.YPMerchantID, name: Swift.String, origin: Swift.String)
+  public let url: Swift.String
+  public init(id: YandexPaySDK.YPMerchantID, name: Swift.String, url: Swift.String)
 }
 public enum YPPaymentError : Swift.Error {
   case authenticationProblem
@@ -143,15 +142,6 @@ public enum YPPaymentError : Swift.Error {
   case amountMismatch
   case unknownError
   public static func == (a: YandexPaySDK.YPPaymentError, b: YandexPaySDK.YPPaymentError) -> Swift.Bool
-  public func hash(into hasher: inout Swift.Hasher)
-  public var hashValue: Swift.Int {
-    get
-  }
-}
-public enum YandexPayButtonPersonalization {
-  case none
-  case personalized
-  public static func == (a: YandexPaySDK.YandexPayButtonPersonalization, b: YandexPaySDK.YandexPayButtonPersonalization) -> Swift.Bool
   public func hash(into hasher: inout Swift.Hasher)
   public var hashValue: Swift.Int {
     get
@@ -199,6 +189,11 @@ public struct YandexPayButtonTheme {
   @available(iOS 13.0, *)
   public init(appearance: YandexPaySDK.YandexPayButtonApperance, dynamic: Swift.Bool)
 }
+public protocol YandexPayButtonAsyncDelegate : AnyObject {
+  func yandexPayButton(_ button: YandexPaySDK.YandexPayButton, didCompletePaymentWithResult result: YandexPaySDK.YPPaymentResult)
+  func yandexPayButtonDidRequestViewControllerForPresentation(_ button: YandexPaySDK.YandexPayButton) -> UIKit.UIViewController?
+  func yandexPayButtonDidRequestPaymentSheet(_ button: YandexPaySDK.YandexPayButton, completion: @escaping (YandexPaySDK.YPPaymentSheet?) -> Swift.Void)
+}
 public enum YPAuthMethod {
   case panOnly
   case cloudToken
@@ -211,8 +206,7 @@ public enum YPAuthMethod {
 public protocol YandexPayButton : UIKit.UIView {
   var theme: YandexPaySDK.YandexPayButtonTheme { get }
   func setTheme(_ theme: YandexPaySDK.YandexPayButtonTheme, animated: Swift.Bool)
-  var personalization: YandexPaySDK.YandexPayButtonPersonalization { get }
-  func setPersonalization(_ personalization: YandexPaySDK.YandexPayButtonPersonalization, animated: Swift.Bool)
+  func setLoaderVisible(_ visible: Swift.Bool, animated: Swift.Bool)
   func reloadPersonalizationData(completion: @escaping (Swift.Error?) -> Swift.Void)
 }
 public struct YPPaymentSheet {
@@ -253,8 +247,12 @@ public struct YPCardPaymentMethod {
   public static var instance: YandexPaySDK.YandexPaySDKApi {
     get
   }
-  public static func initialize(configuration: YandexPaySDK.YandexPaySDKConfiguration, appId: Swift.String) throws
+  public static var isInitialized: Swift.Bool {
+    get
+  }
+  public static func initialize(configuration: YandexPaySDK.YandexPaySDKConfiguration) throws
   final public func createButton(configuration: YandexPaySDK.YandexPayButtonConfiguration, delegate: YandexPaySDK.YandexPayButtonDelegate) -> YandexPaySDK.YandexPayButton
+  final public func createButton(configuration: YandexPaySDK.YandexPayButtonConfiguration, asyncDelegate: YandexPaySDK.YandexPayButtonAsyncDelegate) -> YandexPaySDK.YandexPayButton
   final public func applicationWillEnterForeground()
   final public func applicationDidBecomeActive()
   @discardableResult
@@ -300,8 +298,6 @@ extension YandexPaySDK.ValidationError : Swift.Equatable {}
 extension YandexPaySDK.ValidationError : Swift.Hashable {}
 extension YandexPaySDK.YPPaymentError : Swift.Equatable {}
 extension YandexPaySDK.YPPaymentError : Swift.Hashable {}
-extension YandexPaySDK.YandexPayButtonPersonalization : Swift.Equatable {}
-extension YandexPaySDK.YandexPayButtonPersonalization : Swift.Hashable {}
 extension YandexPaySDK.YandexPaySDKEnvironment : Swift.Equatable {}
 extension YandexPaySDK.YandexPaySDKEnvironment : Swift.Hashable {}
 extension YandexPaySDK.YPCardNetwork : Swift.Equatable {}
