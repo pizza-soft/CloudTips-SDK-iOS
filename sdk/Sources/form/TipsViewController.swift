@@ -100,8 +100,29 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         HTTPResource.baseApiURLString = configuration.testMode ? HTTPResource.baseApiPreprodURLString : HTTPResource.baseApiProdURLString
         
         self.prepareUI()
-        
-        self.updateLayout()
+
+        //self.updateLayout()
+        DispatchQueue.global().async { [weak self] in
+            guard let `self` = self else {
+                return
+            }
+
+            let updateGroup = DispatchGroup()
+
+            updateGroup.enter()
+            self.getPaymentPages(by: self.configuration.layoutId) {
+                updateGroup.leave()
+            }
+
+            updateGroup.wait()
+
+            DispatchQueue.main.async {
+                self.contentScrollView.isHidden = false
+                self.progressContainerView.isHidden = true
+                self.progressView.stopAnimation()
+                self.updateUI()
+            }
+        }
         
         self.googleWebView.isOpaque = false
         self.googleWebView.backgroundColor = UIColor.clear
