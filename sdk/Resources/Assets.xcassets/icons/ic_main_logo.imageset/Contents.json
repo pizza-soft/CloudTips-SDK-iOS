@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "group-13.png",
+      "filename" : "site_sign(1).png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "group-13@2x.png",
+      "filename" : "site_sign(1)-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "group-13@3x.png",
+      "filename" : "site_sign(2).png",
       "idiom" : "universal",
       "scale" : "3x"
     }
