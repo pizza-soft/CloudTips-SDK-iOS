@@ -75,11 +75,10 @@ public class TipsConfiguration {
     }
 
     public init(layoutId: String) {
-        self.layoutId = layoutId
-        self.layout = Layout(layoutId: layoutId, defaultLayout: true, disabled: false, title: "", description: "", text: "", paymentLink: "", backgroundId: "", backgroundUrl: "", qrLink: "")
-        self.phoneNumber = ""
-        self.userName = ""
-        self.agentCode = ""
+        layout = Layout(layoutId: layoutId, defaultLayout: true, disabled: false, title: "", description: "", text: "", paymentLink: "", backgroundId: "", backgroundUrl: "", qrLink: "")
+        phoneNumber = ""
+        name = ""
+        agentCode = ""
     }
 
     public func setApplePayMerchantId(_ merchantId: String) {
