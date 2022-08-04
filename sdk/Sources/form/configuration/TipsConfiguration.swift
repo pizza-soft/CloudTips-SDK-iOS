@@ -10,7 +10,7 @@ import Foundation
 
 public class TipsConfiguration {
 
-    internal let layoutId: String
+    internal let layoutId: String?
     internal let phoneNumber: String
     internal let name: String?
     internal let agentCode: String?
