@@ -40,7 +40,7 @@ Pod::Spec.new do |spec|
   spec.dependency 'PromiseKit/CorePromise'
   spec.dependency 'SnapKit'
 
-#  spec.vendored_frameworks = 'YandexPaySDK/Static/YandexPaySDK.xcframework', 'YandexPaySDK/Static/XPlatPaySDK.xcframework'
-#  spec.resources = ["YandexPaySDK/Static/YandexPaySDKResources.bundle"]
+  spec.vendored_frameworks = 'YandexPaySDK/Static/YandexPaySDK.xcframework', 'YandexPaySDK/Static/XPlatPaySDK.xcframework'
+  spec.resources = ["YandexPaySDK/Static/YandexPaySDKResources.bundle"]
 
 end
