@@ -479,7 +479,7 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
         let minMaxString = "Введите сумму от \(minAmountString) до \(maxAmountString)"
         amountHelperLabel.text = minMaxString
 
-        feeFromPayerSwitch.onTintColor = .azure
+        // feeFromPayerSwitch.onTintColor = .azure
         
         if (configuration.feeFromPayerEnabled ?? false) {
             feeFromPayerView.isHidden = false
