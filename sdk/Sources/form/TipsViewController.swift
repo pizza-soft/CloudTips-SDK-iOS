@@ -563,8 +563,9 @@ public class TipsViewController: BasePaymentViewController, UICollectionViewDele
 
             self.amount = amount
             performSegue(withIdentifier: .tipsToCardSegue, sender: self)
+        } else {
+            setAmountErrorMode(true)
         }
-
     }
     
     private func validateAmount(_ amount: NSNumber) -> Bool {
