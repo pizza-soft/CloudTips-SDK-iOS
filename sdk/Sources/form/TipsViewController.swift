@@ -767,7 +767,7 @@ extension TipsViewController: YandexPayButtonDelegate {
             self.yandexPayProcess(paymentInfo.paymentToken)
         case .failed(let paymentError):
                 // An error occured while processing payment (e.g. validation error)
-            showAlertMessage(title: "Error!", message: "\(paymentError)")
+            showAlertMessage(title: "Яндекс.Pay", message: "Не смогли провести платеж. Повторите попытку позднее.")
         case .cancelled:
                 // Payment window was dismissed by user
             break
@@ -869,6 +869,7 @@ extension TipsViewController: YandexPayButtonDelegate {
                 ]
             )
         } else {
+            setAmountErrorMode(true)
             return nil
         }
     }
