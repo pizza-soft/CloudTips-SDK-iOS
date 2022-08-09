@@ -15,7 +15,7 @@
         <!--Tips View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController modalPresentationStyle="currentContext" id="BYZ-38-t0r" customClass="TipsViewController" customModule="CloudtipsSDK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="currentContext" id="BYZ-38-t0r" customClass="TipsViewController" customModule="Cloudtips_SDK_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -106,7 +106,6 @@
                                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                                                         <real key="value" value="4"/>
                                                                     </userDefinedRuntimeAttribute>
-                                                                    <userDefinedRuntimeAttribute type="image" keyPath="rightImage" value="ic_ruble"/>
                                                                     <userDefinedRuntimeAttribute type="color" keyPath="activeUnderlineColor">
                                                                         <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     </userDefinedRuntimeAttribute>
@@ -171,7 +170,7 @@
                                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         </collectionViewFlowLayout>
                                                         <cells>
-                                                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultAmountCell" id="82U-gv-pJy" customClass="DefaultAmountCell" customModule="CloudtipsSDK" customModuleProvider="target">
+                                                            <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DefaultAmountCell" id="82U-gv-pJy" customClass="DefaultAmountCell" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                                 <rect key="frame" x="0.0" y="9" width="90" height="42"/>
                                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                                 <collectionViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="0Cf-8c-fbf">
@@ -331,7 +330,7 @@
                                                                         <color key="textColor" name="section_title_color"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljc-FA-NQj" customClass="Button" customModule="CloudtipsSDK" customModuleProvider="target">
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ljc-FA-NQj" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="63.5" width="374" height="56"/>
                                                                         <color key="backgroundColor" name="red"/>
                                                                         <constraints>
@@ -372,7 +371,7 @@
                                                                     </view>
                                                                 </subviews>
                                                             </stackView>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-Ur-UUk" customClass="Button" customModule="CloudtipsSDK" customModuleProvider="target">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkC-Ur-UUk" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                                 <rect key="frame" x="20" y="344.5" width="374" height="32"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="32" id="4xd-lE-nra"/>
@@ -480,7 +479,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6I-6c-dPs">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5X-9D-Smu" customClass="ProgressView" customModule="CloudtipsSDK" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5X-9D-Smu" customClass="ProgressView" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                         <rect key="frame" x="107" y="348" width="200" height="200"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -566,7 +565,7 @@
         <!--Card View Controller-->
         <scene sceneID="4t9-69-Obb">
             <objects>
-                <viewController id="aou-pE-QZc" customClass="CardViewController" customModule="CloudtipsSDK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aou-pE-QZc" customClass="CardViewController" customModule="Cloudtips_SDK_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="aFs-8G-fS5">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -591,7 +590,7 @@
                                                 <color key="textColor" name="section_title_color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXw-Ry-oFM" customClass="TextField" customModule="CloudtipsSDK" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bXw-Ry-oFM" customClass="TextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="58.5" width="374" height="56"/>
                                                 <color key="backgroundColor" name="veryLightBlue"/>
                                                 <constraints>
@@ -655,7 +654,7 @@
                                                 <color key="textColor" name="section_title_color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ММ/ГГ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vnC-42-Ezw" customClass="TextField" customModule="CloudtipsSDK" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="ММ/ГГ" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vnC-42-Ezw" customClass="TextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="170" width="171" height="56"/>
                                                 <color key="backgroundColor" name="veryLightBlue"/>
                                                 <constraints>
@@ -700,7 +699,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UR8-Qs-yJO" customClass="TextField" customModule="CloudtipsSDK" customModuleProvider="target">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UR8-Qs-yJO" customClass="TextField" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="223" y="170" width="171" height="56"/>
                                                 <color key="backgroundColor" name="veryLightBlue"/>
                                                 <constraints>
@@ -745,7 +744,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMM-px-nZy" customClass="Button" customModule="CloudtipsSDK" customModuleProvider="target">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMM-px-nZy" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                                 <rect key="frame" x="20" y="266" width="374" height="56"/>
                                                 <color key="backgroundColor" name="red"/>
                                                 <constraints>
@@ -880,7 +879,7 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="h1w-tD-6My">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrP-vI-RXQ" customClass="ProgressView" customModule="CloudtipsSDK" customModuleProvider="target">
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KrP-vI-RXQ" customClass="ProgressView" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                         <rect key="frame" x="107" y="304" width="200" height="200"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <constraints>
@@ -946,7 +945,7 @@
         <!--Completion View Controller-->
         <scene sceneID="TY3-9q-vrn">
             <objects>
-                <viewController id="bRu-YF-96i" customClass="CompletionViewController" customModule="CloudtipsSDK" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="bRu-YF-96i" customClass="CompletionViewController" customModule="Cloudtips_SDK_iOS" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6VZ-mY-3Q9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -991,7 +990,7 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGX-dg-eK3" customClass="Button" customModule="CloudtipsSDK" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RGX-dg-eK3" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                 <rect key="frame" x="20" y="359" width="374" height="56"/>
                                 <color key="backgroundColor" name="red"/>
                                 <constraints>
@@ -1002,7 +1001,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DC3-XM-GYb" userLabel="Close Button" customClass="Button" customModule="CloudtipsSDK" customModuleProvider="target">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DC3-XM-GYb" userLabel="Close Button" customClass="Button" customModule="Cloudtips_SDK_iOS" customModuleProvider="target">
                                 <rect key="frame" x="20" y="435" width="374" height="56"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -1094,13 +1093,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="K9T-hx-DGK"/>
+        <segue reference="PhF-Kq-76C"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ic_avatar_placeholder" width="96" height="96"/>
         <image name="ic_avatar_placeholder_big" width="144" height="144"/>
         <image name="ic_back" width="16" height="16"/>
-        <image name="ic_ruble" width="40" height="40"/>
         <image name="ic_sec_master" width="67" height="21"/>
         <image name="ic_sec_mir" width="88" height="42"/>
         <image name="ic_sec_pcidss" width="87" height="36"/>
